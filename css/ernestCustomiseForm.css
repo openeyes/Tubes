@@ -1,0 +1,21 @@
+/*
+**Author:Ernest Elikem Moorfiels Eye Hospital, All rights reserved for OpenEyes Foundation Project
+*This css formats the form field attributes
+*Language CSS
+*/
+table, td, th
+{border:1px solid white;border-collapse: collapse;}
+td{text-align:right;vertical-align:top;}
+th{background-color:;text-align: left;}
+.demographicMarginAlign{ margin-left: -115px;margin-right: 0;}
+.ophthalmicHistoryMarginAlign{margin-left: -50px;margin-right: 0;}
+.ophthalmicExamMarginAlign{margin-left: -140px;margin-right: 0;}
+.surgicalMarginAlign{margin-left: -192px;margin-right: 0;}
+.inputFieldalign{text-align:left;}
+.borders{ border: 3px #F4F7FB double;background-color:#F4F7FB;}
+.tdWidth{
+   width: 100%;
+   text-align : center;
+   border: 3px #F4F7FB double;
+   margin: 100px 100px 100px 100px;
+}

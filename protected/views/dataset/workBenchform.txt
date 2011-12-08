@@ -1,0 +1,212 @@
+	
+		
+	<fieldset>
+	 <legend>Ophthalmic Exam </legend>
+			<div class="alignLeft">
+				<table>
+					
+					<tr>
+					<td >
+					<?php echo "BCVA  ". ZHtml::enumDropDownList($model,'asmt_bcva', array()); ?>
+						<?php echo  $form->error($model,'asmt_bcva'); ?></td>
+						
+					<td>
+					<?php echo "CD ratio ". ZHtml::enumDropDownList($model,'asmt_cd_ratio', array()); ?>
+						<?php echo $form->error($model,'asmt_cd_ratio'); ?></td>
+						
+					<td colspan=2>
+					<?php echo "Cornea ".ZHtml::enumDropDownList($model,'asmt_cornea', array()); ?>
+						<?php echo $form->error($model,'asmt_cornea'); ?></td>
+					<td>&nbsp;</td>
+					</tr>
+					<tr>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+					</tr>
+					<tr>
+				
+					<td colspan=2 class="inputFieldalign">
+						<?php echo $form->labelEx($model,'asmt_iop1'); ?>
+						<?php echo $form->textField($model,'asmt_iop1',array('size'=>2,'maxlength'=>2)); ?>
+						<?php echo $form->error($model,'asmt_iop1'); ?>
+						<?php echo $form->labelEx($model,'asmt_iop2'); ?>
+						<?php echo $form->textField($model,'asmt_iop2',array('size'=>2,'maxlength'=>2)); ?>
+						<?php echo $form->error($model,'asmt_iop2'); ?>
+					
+						<?php echo $form->labelEx($model,'asmt_iop3'); ?>
+						<?php echo $form->textField($model,'asmt_iop3',array('size'=>2,'maxlength'=>2)); ?>
+						<?php echo $form->error($model,'asmt_iop3'); ?>
+					</td>
+					
+				
+					<td class="inputFieldalign"><?php echo $form->textField($model,'asmt_avg_iop',array('size'=>3,'maxlength'=>2)); ?>
+					<?php echo $form->error($model,'asmt_avg_iop')."(Average IOP)";?></td>
+						
+				
+					
+					
+					<td class="inputFieldalign"><?php echo "CCT   ".$form->textField($model,'asmt_cct',array('size'=>6,'maxlength'=>4)); ?>
+						<?php echo $form->error($model,'asmt_cct'); ?>
+					</td>
+				
+				
+				
+					</tr>
+					
+					<tr>
+							<td class="inputFieldalign"><?php echo $form->labelEx($model,'asmt_lens'); ?></td>	
+							<td class="inputFieldalign">	<?php echo ZHtml::enumDropDownList($model,'asmt_lens', array()); ?>
+									<?php echo $form->error($model,'asmt_lens'); ?></td>
+							
+							<td class="inputFieldalign"><?php echo $form->labelEx($model,'previous_post_op_motility'); ?></td>
+							<td class="inputFieldalign">	<?php echo ZHtml::enumDropDownList($model,'previous_post_op_motility', array()); ?>
+									<?php echo $form->error($model,'previous_post_op_motility'); ?></td>
+						
+						
+					
+					</tr>
+					<tr>
+							<th colspan=4>Previous Surgery</th>
+								
+			
+					</tr>
+					
+					<tr>
+							<td class="inputFieldalign"><?php echo $form->labelEx($model,'previous_surgery_tube'); ?></td>
+								<td class="inputFieldalign"><?php echo $form->checkBox($model,'previous_surgery_tube'); ?>
+									<?php echo $form->error($model,'previous_surgery_tube'); ?></td>
+								<td class="inputFieldalign"><?php echo $form->labelEx($model,'previous_surgery_VRSx'); ?></td>
+								<td class="inputFieldalign">	<?php echo $form->checkBox($model,'previous_surgery_VRSx'); ?>
+						<?php echo $form->error($model,'previous_surgery_VRSx'); ?></td>
+							
+				
+					</tr>
+					
+					<tr>
+						<td ><?php echo $form->labelEx($model,'previous_surgery_silicone_oil'); ?></td>	
+						<td class="inputFieldalign"><?php echo $form->checkBox($model,'previous_surgery_silicone_oil'); ?>
+						<?php echo $form->error($model,'previous_surgery_silicone_oil'); ?></td>	
+						<td><?php echo $form->labelEx($model,'previous_surgery_silicone_removed'); ?></td>		
+						<td class="inputFieldalign"><?php echo $form->checkBox($model,'previous_surgery_silicone_removed'); ?>
+						<?php echo $form->error($model,'previous_surgery_silicone_removed'); ?></td>	
+					
+					</tr>
+					<tr>
+							<td><?php echo $form->labelEx($model,'previous_surgery_cyclo_destruction'); ?></td>		
+							<td class="inputFieldalign"><?php echo $form->checkBox($model,'previous_surgery_cyclo_destruction'); ?>
+						<?php echo $form->error($model,'previous_surgery_cyclo_destruction'); ?></td>		
+							<td><?php echo $form->labelEx($model,'previous_surgery_trab_npfs_express'); ?></td>		
+							<td class="inputFieldalign"><?php echo $form->checkBox($model,'previous_surgery_trab_npfs_express'); ?>
+						<?php echo $form->error($model,'previous_surgery_trab_npfs_express'); ?></td>		
+							
+					</tr>
+					
+					<tr>
+					<td><?php echo $form->labelEx($model,'previous_surgery_corneal_tx'); ?></td>
+					<td class="inputFieldalign"><?php echo $form->checkBox($model,'previous_surgery_corneal_tx'); ?>
+						<?php echo $form->error($model,'previous_surgery_corneal_tx'); ?></td>
+					
+						<td colspan=2><?php echo $form->labelEx($model,'previous_surgery_comment'); ?>
+						<?php echo $form->textArea($model,'previous_surgery_comment',array('rows'=>2, 'cols'=>26)); ?>
+						<?php echo $form->error($model,'previous_surgery_comment'); ?></td>
+					
+					
+					</tr>
+					</table>
+				
+			</div>
+
+	
+	</fieldset>
+	<fieldset>
+	<legend>Surgical Details</legend>
+		<div class="alignLeft">
+	<table border="0" bordercolor="" style="background-color:" width="400" cellpadding="3" cellspacing="3">
+	<tr>
+		<td><?php echo $form->labelEx($model,'asmt_eye'); ?>
+								<?php echo ZHtml::enumDropDownList($model,'asmt_eye', array()); ?>
+								<?php echo $form->error($model,'asmt_eye'); ?></td>
+		<td><?php echo $form->labelEx($model,'anaesthetic_type'); ?>
+								<?php echo ZHtml::enumDropDownList($model,'anaesthetic_type', array()); ?>
+								<?php echo $form->error($model,'anaesthetic_type'); ?></td>
+		<td><?php echo $form->labelEx($model,'shunt_type'); ?>
+								<?php echo ZHtml::enumDropDownList($model,'shunt_type', array()); ?>
+								<?php echo $form->error($model,'shunt_type'); ?></td>
+		<td><?php echo $form->labelEx($model,'anti_metabolites'); ?>
+								<?php echo ZHtml::enumDropDownList($model,'anti_metabolites', array()); ?>
+								<?php echo $form->error($model,'anti_metabolites'); ?></td>
+		<td><?php echo $form->labelEx($model,'per_operative_drugs'); ?>
+								<?php echo ZHtml::enumDropDownList($model,'per_operative_drugs', array()); ?>
+								<?php echo $form->error($model,'per_operative_drugs'); ?></td>
+	</tr>
+	<tr>
+		<td>	<?php echo $form->labelEx($model,'plate_position'); ?>
+								<?php echo ZHtml::enumDropDownList($model,'plate_position', array()); ?>
+								<?php echo $form->error($model,'plate_position'); ?></td>
+		<td><?php echo $form->labelEx($model,'tube_position'); ?>
+								<?php echo ZHtml::enumDropDownList($model,'tube_position', array()); ?>
+								<?php echo $form->error($model,'tube_position'); ?></td>
+		<td><?php echo $form->labelEx($model,'patch'); ?>
+								<?php echo ZHtml::enumDropDownList($model,'patch', array()); ?>
+								<?php echo $form->error($model,'patch'); ?></td>
+		<td colspan=2 style="text-align:left;vertical-align:middle">
+								<?php echo "Plate Limbus distance  ".$form->textField($model,'plate_limbus_distance',array('size'=>2,'maxlength'=>2)).' (mm)'; ?>
+								<?php echo $form->error($model,'plate_limbus_distance'); ?></td>
+		
+	</tr>
+	<tr>
+		<td style="vertical-align:middle"><?php //echo $form->labelEx($model,'supramid_in_eye'); ?>
+								<?php echo "Supramid In Eye". $form->checkBox($model,'supramid_in_eye'); ?>
+								<?php echo $form->error($model,'supramid_in_eye'); ?></td>
+		<td colspan=2 style="vertical-align:middle">
+								<?php echo "Distance from limbus  ".$form->textField($model,'supramid_distance_from_limbus',array('size'=>8,'maxlength'=>5)).' (If supramid in Eye)'; ?>
+								<?php echo $form->error($model,'supramid_distance_from_limbus'); ?></td>
+		<td style="vertical-align:top"><?php echo $form->labelEx($model,'tube_occlusion'); ?>
+								<?php echo ZHtml::enumDropDownList($model,'tube_occlusion', array()); ?>
+								<?php echo $form->error($model,'tube_occlusion'); ?></td>
+		<td  >	<?php echo $form->labelEx($model,'ligated'); ?>
+								<?php echo ZHtml::enumDropDownList($model,'ligated', array()); ?>
+								<?php echo $form->error($model,'ligated'); ?></td>
+	</tr>
+	<tr>
+		
+			<td><?php //echo $form->labelEx($model,'slit'); ?>
+								<?php echo "Slit   ". $form->checkBox($model,'slit',array('value'=>'Yes','unchecked'=>'No')); ?>
+								<?php echo $form->error($model,'slit'); ?></td>
+			<td>	<?php //echo $form->labelEx($model,'viscoelastic'); ?>
+									<?php echo "Viscoelastic  ". $form->checkBox($model,'viscoelastic',array('value'=>'Yes','unchecked'=>'No')); ?>
+								<?php echo $form->error($model,'viscoelastic'); ?></td>
+		<td><?php //echo $form->labelEx($model,'flow_tested'); ?>
+								<?php echo "Flow tested   ". $form->checkBox($model,'flow_tested',array('value'=>'Yes','unchecked'=>'No')); ?>
+								<?php echo $form->error($model,'flow_tested'); ?></td>									
+								
+	</tr>
+	
+	<tr>
+		
+		<td colspan=2><?php echo $form->labelEx($model,'surgical_comments'); ?>
+								<?php echo $form->textArea($model,'surgical_comments',array('rows'=>3, 'cols'=>25)); ?>
+								<?php echo $form->error($model,'surgical_comments'); ?></td>
+		<td colspan=2 style="vertical-align:middle"><?php echo $form->labelEx($model,'surgeon_name'); ?>
+								<?php echo $form->textField($model,'surgeon_name',array('size'=>25,'maxlength'=>25)); ?>
+								<?php echo $form->error($model,'surgeon_name'); ?></td>
+	
+	</tr>
+	
+</table>
+</div>
+		<div class="row buttons" align="right">
+		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
+		</div>
+
+	</fieldset>
+	
+	
+	
+	
+	
+	
+	
+	
+		
