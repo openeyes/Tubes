@@ -165,13 +165,13 @@ for (i = 0; i < field.length; i++)
         <div class="borders">
 		<tr class="borders">
           <td ><div align="center"><?php echo $form->labelEx($model,'ophth_diagnosis'); ?> 
-		  <?php echo ZHtml::enumDropDownList($model,'ophth_diagnosis', array('onchange'=>'moveNextFocus("Dataset_if_secondary_specify");toggleVisibility("Dataset_if_secondary_specify");')); ?> 
+		  <?php echo ZHtml::enumDropDownList($model,'ophth_diagnosis', array('onchange'=>'secondaryToggle();')); ?> 
 		  <?php echo $form->error($model,'ophth_diagnosis'); ?> </div></td>
 		  
 		  
 		  
 		  
-          <td><div align="center"><?php echo $form->labelEx($model,'if_secondary_specify'); ?> 
+          <td><div align="center" style="display: none;"><?php echo $form->labelEx($model,'if_secondary_specify'); ?> 
 		  <?php echo ZHtml::enumDropDownList($model,'if_secondary_specify', array('onchange'=>'moveNextFocus("Dataset_angle_diagnosis");*/')); ?> <?php echo $form->error($model,'if_secondary_specify'); ?> </div></td>
           <td><div align="center"><?php echo $form->labelEx($model,'angle_diagnosis'); ?> <?php echo ZHtml::enumDropDownList($model,'angle_diagnosis', array()); ?> <?php echo $form->error($model,'angle_diagnosis'); ?> </div></td>
 		 <td>
@@ -194,7 +194,7 @@ for (i = 0; i < field.length; i++)
           <td style="text-align:left">
 			<div align="center">
 				  <?php echo "Prostaglandins  "//$form->labelEx($model,'glaucmed_prostaglandins'); ?> </div>
-				  <div align="center">  <?php echo $form->checkBox($model,'glaucmed_prostaglandins'); ?>
+				  <div align="center">  <?php echo $form->checkBox($model,'glaucmed_prostaglandins',array('onclick'=>'checkClearMedications();')); ?>
 				  <?php echo $form->error($model,'glaucmed_prostaglandins'); ?></div>
 		  </td>
 		  
@@ -203,23 +203,23 @@ for (i = 0; i < field.length; i++)
 		  <div align="center">
 		  <?php echo "Pilocarpine"//$form->labelEx($model,'glaucmed_pilocarpine'); ?> </div>
 		  
-          <div align="center"><?php echo $form->checkBox($model,'glaucmed_pilocarpine'); ?> <?php echo $form->error($model,'glaucmed_pilocarpine'); ?></div></td>
+          <div align="center"><?php echo $form->checkBox($model,'glaucmed_pilocarpine',array('onclick'=>'checkClearMedications();')); ?> <?php echo $form->error($model,'glaucmed_pilocarpine'); ?></div></td>
           <td  style="text-align:left"><div align="center"><?php echo "Topical CAI"//$form->labelEx($model,'glaucmed_topical_cai'); ?> </div>
-          <div align="center"><?php echo $form->checkBox($model,'glaucmed_topical_cai'); ?> <?php echo $form->error($model,'glaucmed_topical_cai'); ?></div></td>
+          <div align="center"><?php echo $form->checkBox($model,'glaucmed_topical_cai',array('onclick'=>'checkClearMedications();')); ?> <?php echo $form->error($model,'glaucmed_topical_cai'); ?></div></td>
 		  
           <td style="text-align:left"><div align="center"><?php echo "Systemic CAI"//$form->labelEx($model,'glaucmed_sytemic_cai'); ?> </div>
-          <div align="center"><?php echo $form->checkBox($model,'glaucmed_sytemic_cai'); ?> <?php echo $form->error($model,'glaucmed_sytemic_cai'); ?></div></td>
+          <div align="center"><?php echo $form->checkBox($model,'glaucmed_sytemic_cai',array('onclick'=>'checkClearMedications();')); ?> <?php echo $form->error($model,'glaucmed_sytemic_cai'); ?></div></td>
         </tr>
         <tr class="borders">
 		  <td style="text-align:left;column-width:200px;"><div align="center">
 		  <?php echo "Alpha agonist"//$form->labelEx($model,'glaucmed_alpha_agonists'); ?> </div>
             <div align="center"></div>
-          <div align="center"><?php echo $form->checkBox($model,'glaucmed_alpha_agonists'); ?> 
+          <div align="center"><?php echo $form->checkBox($model,'glaucmed_alpha_agonists',array('onclick'=>'checkClearMedications();')); ?> 
 		  <?php echo $form->error($model,'glaucmed_alpha_agonists'); ?></div></td>
           <td><div align="center"><?php echo "None"//$form->labelEx($model,'glaucmed_none'); ?> </div>
-          <div align="center"><?php echo $form->checkBox($model,'glaucmed_none',array('onclick'=>'uncheckAll("Dataset");validateGlaucomaMeds();')); ?> <?php echo $form->error($model,'glaucmed_none'); ?></div></td>
+          <div align="center"><?php echo $form->checkBox($model,'glaucmed_none',array('onclick'=>'checkClearMedications("glaucmed_none");')); ?> <?php echo $form->error($model,'glaucmed_none'); ?></div></td>
           <td><div align="center"><?php echo "Not Available"// $form->labelEx($model,'glaucmed_not_available'); ?> </div>
-          <div align="center"><?php echo $form->checkBox($model,'glaucmed_not_available',array('onclick'=>'uncheckAll("Dataset");validateCheckBox();')); ?> <?php echo $form->error($model,'glaucmed_not_available'); ?></div></td>
+          <div align="center"><?php echo $form->checkBox($model,'glaucmed_not_available',array('onclick'=>'checkClearMedications("glaucmed_not_available");')); ?> <?php echo $form->error($model,'glaucmed_not_available'); ?></div></td>
         
 		<td>&nbsp;</td>
 		</tr>

@@ -75,8 +75,8 @@ return array(
 		'db'=>array(
 			'connectionString' => 'mysql:host=localhost;dbname=tubes',
 			'emulatePrepare' => true,
-			'username' => 'tubes',
-			'password' => 'esofj32f8932hf8ieh3f9832udfh932hf',
+			'username' => 'root',
+			'password' => '',
 			'charset' => 'utf8',
 		),
 		
@@ -105,10 +105,10 @@ return array(
 	// using Yii::app()->params['paramName']
 	'params'=>array(
 		// this is used in contact page
-		'adminEmail'=>'ernestelikem@gmail.com',
+		'adminEmail'=>'jamie.neil@openeyes.org.uk',
 		
 		//Ernest::additional emails
-		'consultantEmail'=>'kb@keithbarton.co.uk'
+		'consultantEmail'=>'jamie.neil@openeyes.org.uk'
 		
 		
 		

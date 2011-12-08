@@ -29,6 +29,7 @@ class JMy97DatePicker extends CJuiInputWidget
 
         $options=CJavaScript::jsonEncode($this->options);
         $this->htmlOptions['onclick']=strtr('WdatePicker({options});',array('{options}'=>$options));
+        //$this->htmlOptions['onMouseOut']="alert('fish');";
 		if($this->hasModel())
 			echo CHtml::activeTextField($this->model,$this->attribute,$this->htmlOptions);
 		else
