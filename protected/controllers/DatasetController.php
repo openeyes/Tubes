@@ -11,8 +11,7 @@ class DatasetController extends Controller
 	/**
 	 * @return array action filters
 	 */
-	public function filters()
-	{
+	public function filters() {
 		return array(
 			'accessControl', // perform access control for CRUD operations
 		);
@@ -23,23 +22,22 @@ class DatasetController extends Controller
 	 * This method is used by the 'accessControl' filter.
 	 * @return array access control rules
 	 */
-	public function accessRules()
-	{
+	public function accessRules() {
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view'),
-				'users'=>array('*'),
+					'actions'=>array('index','view'),
+					'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','admin','update'),//adapted from code.google.com/p/yii-user/wiki/API
-				'users'=>array('@'),
+					'actions'=>array('create','admin','update','wizard'),//adapted from code.google.com/p/yii-user/wiki/API
+					'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('admin','delete'),
-				'users'=>array('admin'),
+					'actions'=>array('admin','delete'),
+					'users'=>array('admin'),
 			),
 			array('deny',  // deny all users
-				'users'=>array('*'),
+					'users'=>array('*'),
 			),
 		);
 	}
@@ -48,8 +46,7 @@ class DatasetController extends Controller
 	 * Displays a particular model.
 	 * @param integer $id the ID of the model to be displayed
 	 */
-	public function actionView($id)
-	{
+	public function actionView($id) {
 		$this->render('view',array(
 			'model'=>$this->loadModel($id),
 		));
@@ -59,8 +56,7 @@ class DatasetController extends Controller
 	 * Creates a new model.
 	 * If creation is successful, the browser will be redirected to the 'view' page.
 	 */
-	public function actionCreate()
-	{
+	public function actionCreate() {
 		$model=new Dataset;
 
 		// Uncomment the following line if AJAX validation is needed
@@ -70,7 +66,7 @@ class DatasetController extends Controller
 		{
 			$model->attributes=$_POST['Dataset'];
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->id));
+			$this->redirect(array('view','id'=>$model->id));
 		}
 
 		$this->render('create',array(
@@ -94,7 +90,7 @@ class DatasetController extends Controller
 		{
 			$model->attributes=$_POST['Dataset'];
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->id));
+			$this->redirect(array('view','id'=>$model->id));
 		}
 
 		$this->render('update',array(
@@ -116,10 +112,10 @@ class DatasetController extends Controller
 
 			// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
 			if(!isset($_GET['ajax']))
-				$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
+			$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
 		}
 		else
-			throw new CHttpException(400,'Invalid request. Please do not repeat this request again.');
+		throw new CHttpException(400,'Invalid request. Please do not repeat this request again.');
 	}
 
 	/**
@@ -141,7 +137,7 @@ class DatasetController extends Controller
 		$model=new Dataset('search');
 		$model->unsetAttributes();  // clear any default values
 		if(isset($_GET['Dataset']))
-			$model->attributes=$_GET['Dataset'];
+		$model->attributes=$_GET['Dataset'];
 
 		$this->render('admin',array(
 			'model'=>$model,
@@ -157,7 +153,7 @@ class DatasetController extends Controller
 	{
 		$model=Dataset::model()->findByPk((int)$id);
 		if($model===null)
-			throw new CHttpException(404,'The requested page does not exist.');
+		throw new CHttpException(404,'The requested page does not exist.');
 		return $model;
 	}
 
@@ -173,38 +169,46 @@ class DatasetController extends Controller
 			Yii::app()->end();
 		}
 	}
+
+	/*
+	 * WIZARD
+	 */
 	
-	//Ernest::Added this public function to allow wizard form navigation 
-	/*Source documentation:http://wizard-behavior.pbm-webdev.co.uk/documents/wizard_behavior_manual.pdf
-	
-	*/
-	/*public function behaviors(){
-	
-	return array(
-	
-		'wizard'=>array(
-			'class'=>'ext.WizardBehavior',
-			'steps'=>array('step1','step2','step3','finish'),
-			//other wizard configuration here
+	public function behaviors() {
+		return array(
+			'wizard'=>array(
+				'class' => 'application.extensions.WizardBehavior',
+				'steps' => array('patientDemographics', 'ophthalmicHistory'),
+				'events'=>array(
+					'onStart'=>'wizardStart',
+					'onProcessStep'=>'wizardProcessStep',
+					'onFinished'=>'wizardFinished',
+					'onInvalidStep'=>'wizardInvalidStep',
+				),
 			)
 		);
-		
 	}
-	
-	public function actionWizard($step=null){
-	
+
+	public function actionWizard($step = null) {
+		$this->pageTitle = 'Test Wizard';
 		$this->process($step);
-	
 	}
-	
-	public function wizardStart($event){
-	
-		$event->handled=true;
-		
+
+	public function wizardStart($event) {
+		$event->handled = true;
 	}
-	
-	
-	*/
-	
+
+	public function wizardProcessStep($event) {
+		$modelName = 'WizardForm'.ucfirst($event->step);
+		$model = new $modelName();
+		$model->attributes = $event->data;
+		$form = $model->getForm();
+		if ($form->submitted() && $form->validate()) {
+			$event->sender->save($model->attributes);
+			$event->handled = true;
+		} else {
+			$this->render('wizardform', compact('event','form'));
+		}
+	}
 	
 }
