@@ -1,5 +1,5 @@
 <!-- Print function -->
-<script language="JavaScript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/printView.js" type="text/javascript"></script>
+<script src="<?php echo Yii::app()->request->baseUrl; ?>/js/printView.js" type="text/javascript"></script>
 
 <?php
 $this->breadcrumbs=array(
@@ -18,7 +18,7 @@ $this->menu=array(
 <a  onclick=" printPage(document.getElementById('printPage'));return false"><?php echo CHtml::image(Yii::app()->request->baseUrl."/images/print.gif", "printer");?></a><br/>
 <br/>
 <div id="printPage">
-<h1>Patient (<?php echo $model->hospital_number; ?>) Dataset  </h1>
+<h1>Patient (<?php echo $model->hospital_number; ?>) Dataset</h1>
 
 <?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,

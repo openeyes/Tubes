@@ -29,7 +29,7 @@ class DatasetController extends Controller
 					'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-					'actions'=>array('create','admin','update','wizard'),//adapted from code.google.com/p/yii-user/wiki/API
+					'actions'=>array('admin','update','create'), //adapted from code.google.com/p/yii-user/wiki/API
 					'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -42,6 +42,98 @@ class DatasetController extends Controller
 		);
 	}
 
+	public function beforeAction($action) {
+		if(in_array($action->id, array('create'))) {
+			$this->attachBehavior('wizard', array(
+				'class' => 'application.extensions.WizardBehavior',
+				'steps' => array('Patient Demographics' => '1', 'Ophthalmic History' => '2', 'Ophthalmic Exam' => '3', 'Surgical Details' => '4'),
+			));
+		}
+		return parent::beforeAction($action);
+	}
+	
+	/**
+	 * Multistep form for creating datasets
+	 * @param string $step
+	 */
+	public function actionCreate($step = null) {
+		$this->pageTitle = 'Create dataset';
+		$this->process($step);
+	}
+
+	public function wizardStart($event) {
+		$event->handled = true;
+	}
+
+	public function wizardProcessStep($event) {
+		$modelName = 'DatasetFormStep'.$event->step;
+		$model = new $modelName();
+		$model->attributes = $event->data;
+		$form = $model->getForm();
+		if ($form->submitted() && $form->validate()) {
+			$event->sender->save($model->attributes);
+			$event->handled = true;
+		} else {
+			$this->render('create', compact('event','form'));
+		}
+	}
+
+	public function wizardFinished($event) {
+		if ($event->step===true) {
+			$data = array();
+			foreach($event->data as $step_data) {
+				$data += $step_data;
+			}
+			$model = new Dataset();
+			$model->attributes = $data;
+			if($model->save()) {
+				$event->sender->finishedUrl = array('view', 'id' => $model->id);
+			} else {
+				// Something went wrong
+			}
+		}
+	}
+
+	public function wizardInvalidStep($event) {
+	}
+	
+	/**
+	 * Tabbed form for editing datasets
+	 * @param integer $id
+	 * @todo Add tabs (jui?)
+	 */
+	public function actionUpdate($id) {
+		
+		$model=$this->loadModel($id);
+		
+		// Build form
+		$form_elements = array(
+			'step1' => array('type' => 'form', 'elements' => DatasetFormStep1::getElements()),
+			'step2' => array('type' => 'form', 'elements' => DatasetFormStep2::getElements()),
+			'step3' => array('type' => 'form', 'elements' => DatasetFormStep3::getElements()),
+			'step4' => array('type' => 'form', 'elements' => DatasetFormStep4::getElements()),
+		);
+		$form = new CForm(array(
+    	'showErrorSummary' => true,
+			'elements' => $form_elements,
+			'buttons' => array(
+				'save' => array(
+					'type' => 'submit',
+					'label' => 'Save',
+				),
+			),
+		), $model);
+		
+		if($form->submitted('save') && $form->validate()) {
+			$form->loadData();
+			if($model->save()) {
+				$this->redirect(array('view','id' => $model->id));
+			}
+		} else {
+			$this->render('update', compact('form','model'));
+		}
+	}
+
 	/**
 	 * Displays a particular model.
 	 * @param integer $id the ID of the model to be displayed
@@ -49,52 +141,6 @@ class DatasetController extends Controller
 	public function actionView($id) {
 		$this->render('view',array(
 			'model'=>$this->loadModel($id),
-		));
-	}
-
-	/**
-	 * Creates a new model.
-	 * If creation is successful, the browser will be redirected to the 'view' page.
-	 */
-	public function actionCreate() {
-		$model=new Dataset;
-
-		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
-
-		if(isset($_POST['Dataset']))
-		{
-			$model->attributes=$_POST['Dataset'];
-			if($model->save())
-			$this->redirect(array('view','id'=>$model->id));
-		}
-
-		$this->render('create',array(
-			'model'=>$model,
-		));
-	}
-
-	/**
-	 * Updates a particular model.
-	 * If update is successful, the browser will be redirected to the 'view' page.
-	 * @param integer $id the ID of the model to be updated
-	 */
-	public function actionUpdate($id)
-	{
-		$model=$this->loadModel($id);
-
-		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
-
-		if(isset($_POST['Dataset']))
-		{
-			$model->attributes=$_POST['Dataset'];
-			if($model->save())
-			$this->redirect(array('view','id'=>$model->id));
-		}
-
-		$this->render('update',array(
-			'model'=>$model,
 		));
 	}
 
@@ -170,45 +216,4 @@ class DatasetController extends Controller
 		}
 	}
 
-	/*
-	 * WIZARD
-	 */
-	
-	public function behaviors() {
-		return array(
-			'wizard'=>array(
-				'class' => 'application.extensions.WizardBehavior',
-				'steps' => array('patientDemographics', 'ophthalmicHistory'),
-				'events'=>array(
-					'onStart'=>'wizardStart',
-					'onProcessStep'=>'wizardProcessStep',
-					'onFinished'=>'wizardFinished',
-					'onInvalidStep'=>'wizardInvalidStep',
-				),
-			)
-		);
-	}
-
-	public function actionWizard($step = null) {
-		$this->pageTitle = 'Test Wizard';
-		$this->process($step);
-	}
-
-	public function wizardStart($event) {
-		$event->handled = true;
-	}
-
-	public function wizardProcessStep($event) {
-		$modelName = 'WizardForm'.ucfirst($event->step);
-		$model = new $modelName();
-		$model->attributes = $event->data;
-		$form = $model->getForm();
-		if ($form->submitted() && $form->validate()) {
-			$event->sender->save($model->attributes);
-			$event->handled = true;
-		} else {
-			$this->render('wizardform', compact('event','form'));
-		}
-	}
-	
 }

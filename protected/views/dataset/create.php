@@ -1,15 +1,20 @@
 <?php
-$this->breadcrumbs=array(
-	'Datasets'=>array('index'),
+$this->breadcrumbs = array(
+	'Datasets' => array('index'),
 	'Create',
 );
 
-$this->menu=array(
-	array('label'=>'Display Records', 'url'=>array('index')),
-	array('label'=>'Manage Dataset', 'url'=>array('admin')),
+$this->menu = array(
+	array('label' => 'Display Records', 'url' => array('index')),
+	array('label' => 'Manage Dataset', 'url' => array('admin')),
 );
 ?>
 
-<h2>Create Tube Patient Dataset</h2>
+<h1>Create Tube Patient Dataset</h1>
 
-<?php echo $this->renderPartial('_form', array('model'=>$model)); ?>
+<?php
+	echo $event->sender->menu->run();
+	echo '<div>Step '.$event->sender->currentStep.' of '.$event->sender->stepCount;
+	echo '<h3>'.$event->sender->getStepLabel($event->step).'</h3>';
+	echo CHtml::tag('div',array('class'=>'form'),$form);
+?>

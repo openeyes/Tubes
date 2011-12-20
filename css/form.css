@@ -75,7 +75,7 @@ div.form label {
 	clear: left;
 	float: left;
 	height: 16px;
-	width: 150px;
+	width: 250px;
 	font-size: 0.9em;
 	padding-top: 0.1em;	
 }
@@ -122,6 +122,8 @@ div.form .hint
 	margin: 0;
 	padding: 0;
 	color: #999;
+	display: inline;
+	font-size: 10px;
 }
 
 div.form .note
@@ -211,7 +213,10 @@ div.wide.form .buttons, div.wide.form .hint, div.wide.form .errorMessage
 	padding-left: 110px;
 }
 
-
-
-
+/**
+ * Highlight error tabs 
+ */
+div.ui-tabs ul.ui-tabs-nav li a.has_errors {
+	color: red;
+} 
 

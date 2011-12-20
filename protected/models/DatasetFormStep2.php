@@ -1,5 +1,9 @@
 <?php
-class WizardFormOphthalmicHistory extends CFormModel {
+/**
+ * Ophthalmic History
+ * @author jamie
+ */
+class DatasetFormStep2 extends CFormModel {
 	
 	public $ophth_diagnosis;
 	public $if_secondary_specify;
@@ -11,18 +15,20 @@ class WizardFormOphthalmicHistory extends CFormModel {
 	public $glaucmed_alpha_agonists;
 	public $glaucmed_none;
 	public $glaucmed_not_available;
+
+	private $_scenario='wizard';
 	
+	/**
+	 * Validation rules must not conflict with model level rules
+	 */
 	public function rules() {
-		return array(
-			array('if_secondary_specify, glaucmed_prostaglandins, glaucmed_pilocarpine, glaucmed_topical_cai, glaucmed_sytemic_cai, glaucmed_alpha_agonists, glaucmed_none, glaucmed_not_available', 'safe'),
-			array('ophth_diagnosis, angle_diagnosis', 'required'),
-		);
-	}
+		return Dataset::model()->rules_step2();
+			}
 	
-	public function getForm() {
-		return new CForm(array(
-				'elements'=>array(
+	public function getElements() {
+		return array(
 					'ophth_diagnosis'=>array(
+						'label' => 'Ophthalmic Diagnosis',
 						'type' => 'dropdownlist',
     				'items' => ZHtml::enumItem(Dataset::model(),  'ophth_diagnosis'),
     				'prompt' => 'Please select:',
@@ -38,28 +44,44 @@ class WizardFormOphthalmicHistory extends CFormModel {
     				'prompt' => 'Please select:',
 					),
 					'glaucmed_prostaglandins'=>array(
+						'label' => 'Prostaglandins',
 						'type' => 'checkbox',
 					),
 					'glaucmed_pilocarpine'=>array(
+						'label' => 'Pilocarpine',
 						'type' => 'checkbox',
 					),
 					'glaucmed_topical_cai'=>array(
+						'label' => 'Topical CAI',
 						'type' => 'checkbox',
 					),
 					'glaucmed_sytemic_cai'=>array(
+						'label' => 'Sytemic CAI',
 						'type' => 'checkbox',
 					),
 					'glaucmed_alpha_agonists'=>array(
+						'label' => 'Alpha Agonist',
 						'type' => 'checkbox',
 					),
 					'glaucmed_none'=>array(
+						'label' => 'None',
 						'type' => 'checkbox',
 					),
 					'glaucmed_not_available'=>array(
+						'label' => 'Not Available',
 						'type' => 'checkbox',
 					),
-				),
-				'buttons'=>array(
+				);
+	}
+	
+	public function getForm() {
+		return new CForm(array(
+				'elements' => $this->getElements(),
+				'buttons' => array(
+					'previous'=>array(
+						'type'=>'submit',
+						'label'=>'Back'
+					),
 					'submit'=>array(
 						'type'=>'submit',
 						'label'=>'Next'

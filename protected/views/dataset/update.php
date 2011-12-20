@@ -15,4 +15,32 @@ $this->menu=array(
 
 <h1>Update Dataset <?php echo $model->id; ?></h1>
 
-<?php echo $this->renderPartial('_form', array('model'=>$model)); ?>
+<div class="form">
+<?php
+	echo $form->renderBegin();
+	echo $form->getActiveFormWidget()->errorSummary($model);
+	$this->widget('zii.widgets.jui.CJuiTabs', array(
+	    'tabs'=>array(
+        'Patient Demographics' => $form->renderElement('step1'),
+        'Ophthalmic History' => $form->renderElement('step2'),
+        'Ophthalmic Exam' => $form->renderElement('step3'),
+        'Surgical Details' => $form->renderElement('step4'),
+			),
+	));
+	echo $form->renderButtons();
+	echo $form->renderEnd();
+?>
+</div>
+
+<script type="text/javascript">
+$(document).ready(function() {
+	$('div.form').bind('tabscreate', function() {
+		$('.ui-tabs-panel').each(function() {
+			if($('.error', this).length) {
+				id = $(this).attr('id');
+				$('.ui-tabs-nav a[href$="#'+id+'"]', $(this).parent()).addClass('has_errors');
+			}
+		});
+	});
+});
+</script>

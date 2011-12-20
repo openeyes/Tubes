@@ -96,27 +96,98 @@ class Dataset extends CActiveRecord
 	/**
 	 * @return array validation rules for model attributes.
 	 */
-	public function rules()
-	{
-		// NOTE: you should only define rules for those attributes that
-		// will receive user inputs.
+	public function rules() {
+		
+		// Combine rules for wizard steps (avoids defining multiple rule sets)
+		$rules = array_merge($this->rules_step1() ,$this->rules_step2(), $this->rules_step3(), $this->rules_step4());
+		
+		// Additional rules
+		$rules = array_merge($rules, array(
+			array('patient_id', 'length', 'max' => 10),
+			// Search rules
+			array('id, patient_id, hospital_number, pt_first_name, pt_last_name, ethnicity, pt_dob, pt_age, pt_sex,
+				surg_op_date, pt_part_of_study, study_name, ophth_diagnosis, angle_diagnosis, if_secondary_specify,
+				glaucmed_beta_blockers, glaucmed_prostaglandins, glaucmed_pilocarpine, glaucmed_alpha_agonists,
+				glaucmed_topical_cai, glaucmed_sytemic_cai, glaucmed_none, glaucmed_not_available, corticosteroids_topical,
+				corticosteroids_sub_conj, corticosteroids_peri_orbital, corticosteroids_none, corticosteroids_intravitreal,
+				corticosteroids_systemic, corticosteroids_not_available, asmt_bcva, asmt_cd_ratio, asmt_cornea, asmt_iop1,
+				asmt_iop2, asmt_iop3, asmt_avg_iop, asmt_cct, asmt_lens, previous_post_op_motility, previous_surgery_tube,
+				previous_surgery_VRSx, previous_surgery_silicone_oil, previous_surgery_silicone_removed,
+				previous_surgery_cyclo_destruction, previous_surgery_trab_npfs_express, previous_surgery_corneal_tx,
+				previous_surgery_comment, asmt_eye, anaesthetic_type, shunt_type, anti_metabolites, per_operative_drugs,
+				plate_position, tube_position, patch, plate_limbus_distance, supramid_in_eye, supramid_distance_from_limbus,
+				tube_occlusion, ligated, slit, viscoelastic, flow_tested, surgical_comments, surgeon_name', 'safe', 'on'=>'search'),
+		));
+		return $rules;
+	}
+	
+	/**
+	 * @return array validation rules for wizard step1 attributes.
+	 */
+	public function rules_step1() {
 		return array(
-			array('hospital_number,pt_age,pt_dob,surg_op_date,pt_first_name,pt_last_name,pt_sex,ethnicity,ophth_diagnosis,angle_diagnosis,asmt_eye,anaesthetic_type,shunt_type,anti_metabolites,per_operative_drugs,plate_position,tube_position,patch,plate_limbus_distance,supramid_in_eye,supramid_distance_from_limbus,tube_occlusion,ligated,slit,viscoelastic,flow_tested,', 'required'),
-			array('pt_age, asmt_iop1, asmt_iop2, asmt_iop3,plate_limbus_distance', 'numerical', 'integerOnly'=>true),
-			array('patient_id, asmt_cct, plate_limbus_distance, supramid_distance_from_limbus', 'length', 'max'=>10),
-			array('hospital_number, pt_first_name', 'length', 'max'=>50),
-			array('pt_last_name', 'length', 'max'=>45),
-			array('ethnicity', 'length', 'max'=>26),
-			array('pt_sex', 'length', 'max'=>6),
-			array('pt_part_of_study, ophth_diagnosis, angle_diagnosis, glaucmed_beta_blockers, glaucmed_prostaglandins, glaucmed_pilocarpine, glaucmed_alpha_agonists, glaucmed_topical_cai, glaucmed_sytemic_cai, glaucmed_none, glaucmed_not_available, corticosteroids_topical, corticosteroids_sub_conj, corticosteroids_peri_orbital, corticosteroids_none, corticosteroids_intravitreal, corticosteroids_systemic, corticosteroids_not_available, asmt_bcva, asmt_cd_ratio, previous_post_op_motility, previous_surgery_tube, previous_surgery_VRSx, previous_surgery_silicone_oil, previous_surgery_silicone_removed, previous_surgery_cyclo_destruction, previous_surgery_trab_npfs_express, previous_surgery_corneal_tx, asmt_eye, anaesthetic_type, shunt_type, anti_metabolites, plate_position, tube_position, patch, supramid_in_eye, tube_occlusion, ligated, slit, viscoelastic, flow_tested', 'length', 'max'=>13),
-			array('if_secondary_specify, asmt_cornea, asmt_lens, per_operative_drugs, surgeon_name', 'length', 'max'=>20),
-			array('previous_surgery_comment', 'safe'),
-			// The following rule is used by search().
-			// Please remove those attributes that should not be searched.
-			array('id, patient_id, hospital_number, pt_first_name, pt_last_name, ethnicity, pt_dob, pt_age, pt_sex, surg_op_date, pt_part_of_study, study_name, ophth_diagnosis, angle_diagnosis, if_secondary_specify, glaucmed_beta_blockers, glaucmed_prostaglandins, glaucmed_pilocarpine, glaucmed_alpha_agonists, glaucmed_topical_cai, glaucmed_sytemic_cai, glaucmed_none, glaucmed_not_available, corticosteroids_topical, corticosteroids_sub_conj, corticosteroids_peri_orbital, corticosteroids_none, corticosteroids_intravitreal, corticosteroids_systemic, corticosteroids_not_available, asmt_bcva, asmt_cd_ratio, asmt_cornea, asmt_iop1, asmt_iop2, asmt_iop3, asmt_avg_iop, asmt_cct, asmt_lens, previous_post_op_motility, previous_surgery_tube, previous_surgery_VRSx, previous_surgery_silicone_oil, previous_surgery_silicone_removed, previous_surgery_cyclo_destruction, previous_surgery_trab_npfs_express, previous_surgery_corneal_tx, previous_surgery_comment, asmt_eye, anaesthetic_type, shunt_type, anti_metabolites, per_operative_drugs, plate_position, tube_position, patch, plate_limbus_distance, supramid_in_eye, supramid_distance_from_limbus, tube_occlusion, ligated, slit, viscoelastic, flow_tested, surgical_comments, surgeon_name', 'safe', 'on'=>'search'),
+			array('pt_part_of_study, study_name', 'safe'), // Required for attributes that have no other rules
+			array('hospital_number, pt_last_name, pt_first_name, surg_op_date, pt_dob, pt_age, pt_sex, ethnicity', 'required'),
+			array('pt_age', 'numerical', 'integerOnly' => true),
+			array('hospital_number, pt_first_name', 'length', 'max' => 50),
+			array('pt_last_name', 'length', 'max' => 45),
+			array('ethnicity', 'length', 'max' => 26),
+			array('pt_sex', 'length', 'max' => 6),
+			array('pt_part_of_study', 'length', 'max' => 13),
 		);
 	}
 
+	/**
+	 * @return array validation rules for wizard step2 attributes.
+	 */
+	public function rules_step2() {
+		return array(
+			array('if_secondary_specify, glaucmed_prostaglandins, glaucmed_pilocarpine, glaucmed_topical_cai,
+				glaucmed_sytemic_cai, glaucmed_alpha_agonists, glaucmed_none, glaucmed_not_available', 'safe'), // Required for attributes that have no other rules
+			array('ophth_diagnosis, angle_diagnosis', 'required'),
+			array('ophth_diagnosis, angle_diagnosis, glaucmed_prostaglandins, glaucmed_pilocarpine, glaucmed_alpha_agonists,
+				glaucmed_topical_cai, glaucmed_sytemic_cai, glaucmed_none, glaucmed_not_available',	'length', 'max' => 13),
+			array('if_secondary_specify', 'length', 'max' => 20),
+		);
+	}
+	
+	/**
+	 * @return array validation rules for wizard step3 attributes.
+	 */
+	public function rules_step3() {
+		return array(
+			array('asmt_bcva, asmt_cd_ratio, asmt_cornea, asmt_iop1, asmt_iop2, asmt_iop3,
+				asmt_avg_iop, asmt_cct, asmt_lens, previous_post_op_motility, previous_surgery_tube,
+				previous_surgery_VRSx, previous_surgery_silicone_oil, previous_surgery_silicone_removed,
+				previous_surgery_cyclo_destruction, previous_surgery_trab_npfs_express, previous_surgery_corneal_tx,
+				previous_surgery_comment', 'safe'), // Required for attributes that have no other rules
+			array('asmt_iop1, asmt_iop2, asmt_iop3, asmt_avg_iop', 'required'),
+			array('asmt_iop1, asmt_iop2, asmt_iop3', 'numerical', 'integerOnly' => true),
+			array('asmt_cct', 'length', 'max' => 10),
+			array('asmt_bcva, asmt_cd_ratio, previous_post_op_motility, previous_surgery_tube, previous_surgery_VRSx,
+				previous_surgery_silicone_oil, previous_surgery_silicone_removed, previous_surgery_cyclo_destruction,
+				previous_surgery_trab_npfs_express, previous_surgery_corneal_tx', 'length', 'max' => 13),
+			array('asmt_cornea, asmt_lens', 'length', 'max' => 20),
+		);
+	}
+
+	/**
+	 * @return array validation rules for wizard step4 attributes.
+	 */
+	public function rules_step4() {
+		return array(
+			array('surgical_comments, surgeon_name', 'safe'), // Required for attributes that have no other rules
+			array('asmt_eye, anaesthetic_type, shunt_type, anti_metabolites, plate_position,
+				tube_position, tube_occlusion, ligated, patch, plate_limbus_distance, per_operative_drugs, supramid_in_eye,
+				supramid_distance_from_limbus, slit, viscoelastic, flow_tested','required'),
+			array('plate_limbus_distance', 'numerical', 'integerOnly' => true),
+			array('plate_limbus_distance, supramid_distance_from_limbus', 'length', 'max' => 10),
+			array('asmt_eye, anaesthetic_type, shunt_type, anti_metabolites, plate_position, tube_position, patch,
+				supramid_in_eye, tube_occlusion, ligated, slit, viscoelastic, flow_tested', 'length', 'max' => 13),
+			array('per_operative_drugs, surgeon_name', 'length', 'max' => 20),
+		);
+	}
+	
 	/**
 	 * @return array relational rules.
 	 */

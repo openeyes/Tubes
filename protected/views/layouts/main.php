@@ -61,7 +61,7 @@
 
 <div id="footer">
 		Copyright &copy; <?php echo "201".date_default_timezone_set('Europe/London'); ?> Designed by Ernest E-M F(MEH) The OpenEyes Foundation.<br/>
-		All Rights Reserved.<br/><br>
+		All Rights Reserved.<br/>
 		<?php echo '<font color="blue">Moorfields Eye Hospital OpenEyes Project</font>'; ?>
 </div><!-- footer -->
 </div><!-- page -->
