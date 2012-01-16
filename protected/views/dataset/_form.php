@@ -15,9 +15,6 @@ for (i = 0; i < field.length; i++)
 }
 </script>
 
-
-
-
 <div class="form">
 <?php $form=$this->beginWidget('CActiveForm', array(
 	'id'=>'dataset-form',
@@ -37,115 +34,71 @@ for (i = 0; i < field.length; i++)
 <fieldset>
 	  <legend>Patient Demographics </legend>
 	  <div class="demographicMarginAlign">
-	 
 	<table border="1" bordercolor="" style="background-color:" width="400" cellpadding="2" cellspacing="2">
 	<tr class="borders">
 		<td colspan=><?php echo $form->labelEx($model,'hospital_number'); ?>
-					<?php echo $form->textField($model,'hospital_number',array('size'=>24,'maxlength'=>50,)); ?>
+					<?php echo $form->textField($model,'hospital_number',array()); ?>
 					<?php echo $form->error($model,'hospital_number'); ?>
 		</td>
 		
-			
 		<td><?php echo $form->labelEx($model,'pt_last_name'); ?>
-			<?php echo $form->textField($model,'pt_last_name',array('size'=>24,'maxlength'=>45)); ?>
+			<?php echo $form->textField($model,'pt_last_name',array()); ?>
 			<?php echo $form->error($model,'pt_last_name'); ?>
 		</td>
 		
 		<td><?php echo $form->labelEx($model,'pt_first_name'); ?>
-			<?php echo $form->textField($model,'pt_first_name',array('size'=>24,'maxlength'=>50)); ?>
+			<?php echo $form->textField($model,'pt_first_name',array()); ?>
 			<?php echo $form->error($model,'pt_first_name'); ?>
 		</td>
 		
-	
-		
-		
 		<td>
-			<?php echo $form->labelEx($model,'surg_op_date'); ?>
-			<?php  date_default_timezone_set('Europe/London')?>			
+			<?php echo $form->labelEx($model,'surg_op_date'); ?>	
 			<?php $this->widget('ext.my97DatePicker.JMy97DatePicker',array(
 									'name'=>CHtml::activeName($model,'surg_op_date'),
-									'value'=>$model->surg_op_date =  date('d-m-Y') ,
-									/*Ernest: trying to add a default date value= date("d/m/y")*/
-									//Ernest: Added this html option to allow addition of onclick event
-									'htmlOptions'=>array(
-									'readonly'=>'readonly',
-											
-										),
 									'options'=>array(
-									'dateFmt'=>'dd-MM-yyyy',
-									'showOn'=>'focus', // 'focus', 'button', 'both'
-									'buttonText'=>Yii::t('ui','Select form calendar'), 
-									'buttonImage'=>Yii::app()->request->baseUrl.'/images/calendar2.png', 
-									'buttonImageOnly'=>true,
-									'defaultDate'=>$model->surg_op_date,
-									),
-									'htmlOptions'=>array(
-									'style'=>'width:175px;vertical-align:top',
-									'class'=>'date',
-									
-									),
-									
+										),						
 									)); ?>
-				<?php echo $form->error($model,'surg_op_date'); ?></td>
+			<?php echo $form->error($model,'surg_op_date'); ?></td>
 	</tr>
 
 	<tr class="borders">
 		<td><?php echo $form->labelEx($model,'pt_dob'); ?>
 			<?php $this->widget('ext.my97DatePicker.JMy97DatePicker',array(
-												'name'=>CHtml::activeName($model,'pt_dob'),
-												'value'=>$model->pt_dob/*Ernest: trying to add a default date value= date("d/m/y")*/,
-												//Ernest: Added this html option to allow addition of onclick event
-												'options'=>array(
-												'dateFmt'=>'dd-MM-yyyy',
-												'showOn'=>'focus', // 'focus', 'button', 'both'
-												'buttonText'=>Yii::t('ui','Select form calendar'), 
-												'buttonImage'=>Yii::app()->request->baseUrl.'/images/calendar2.png', 
-												'buttonImageOnly'=>true,
-												'defaultDate'=>$model->pt_dob,
-												),
-												'htmlOptions'=>array(
-												'style'=>'width:175px;vertical-align:top',
-												'class'=>'date',
-												'onchange'=>'calcAge()',
-												),
+									'name'=>CHtml::activeName($model,'pt_dob'),
+									'value'=>$model->pt_dob/*Ernest: trying to add a default date value= date("d/m/y")*/,
+									//Ernest: Added this html option to allow addition of onclick event
+									'options'=>array(
+											),
+									'htmlOptions'=>array(
+										'onchange'=>'calcAge()',
+										),
 												
-												)); ?>
+										)); ?>
 			<?php echo $form->error($model,'pt_dob'); ?></td>
 			
 		<td><?php echo $form->labelEx($model,'pt_age'); ?>
-			<?php echo $form->textField($model,'pt_age',array('size'=>15,'maxlength'=>10, 'readonly'=>'readonly',))." (yrs)"; ?>
+			<?php echo $form->textField($model,'pt_age',array())." (yrs)"; ?>
 			<?php echo $form->error($model,'pt_age'); ?></td>
 			
-			
-			
-			
-			
-			
 							
-		<td style="text-align:center; vertical-align:middle;"><?php echo "Gender " //$form->labelEx($model,'pt_sex'); ?>
-			<?php echo  ZHtml::enumDropDownList($model,'pt_sex', array('onchange'=>'moveNextFocus("Dataset_ethnicity");')); ?>
+		<td><?php echo $form->labelEx($model,'pt_sex'); ?>
+			<?php echo ZHtml::enumDropDownList($model,'pt_sex', array()); ?>
 			<?php echo $form->error($model,'pt_sex'); ?></td>
 			
-			
-			
-			
-			
-			
-			
-						
+
 		<td><?php echo $form->labelEx($model,'ethnicity'); ?>
-		<?php echo ZHtml::enumDropDownList($model,'ethnicity', array('onchange'=>'accessSelect();')); ?>
+		<?php echo ZHtml::enumDropDownList($model,'ethnicity', array()); ?>
 		<?php echo $form->error($model,'ethnicity'); ?></td>
 
 	</tr>
 	
 	<tr class="borders">
-		<td>	<?php //echo $form->labelEx($model,'pt_part_of_study'); ?>
+		<td>	<?php echo $form->labelEx($model,'pt_part_of_study'); ?>
 				<?php echo "Patient part of a study". CHtml::activeCheckBox($model,'pt_part_of_study',array('onclick'=>"toggleVisibility('Dataset_study_name');")); ?>
 				<?php echo $form->error($model,'pt_part_of_study'); ?></td>
 
 		<td colspan=3>
-			<?php //echo $form->labelEx($model,'study_name',array('style'=>'visibility:hidden;text-align:right')); ?>
+			<?php echo $form->labelEx($model,'study_name',array('style'=>'visibility:hidden;text-align:right')); ?>
 			<?php echo $form->textField($model,'study_name',array('value'=>'enter study name...','size'=>100,'maxlength'=>40,'title'=>'study Name','style'=>'visibility:hidden;text-align:left;background-color:lightyellow;',)); ?>
 			<?php echo $form->error($model,'study_name'); ?></td>	
 	</tr>
@@ -153,9 +106,6 @@ for (i = 0; i < field.length; i++)
 
 	</fieldset>
 
-	
-	
-	
 	
 	<fieldset >
 	
@@ -165,19 +115,22 @@ for (i = 0; i < field.length; i++)
         <div class="borders">
 		<tr class="borders">
           <td ><div align="center"><?php echo $form->labelEx($model,'ophth_diagnosis'); ?> 
-		  <?php echo ZHtml::enumDropDownList($model,'ophth_diagnosis', array('onchange'=>'secondaryToggle();')); ?> 
+		  <?php echo ZHtml::enumDropDownList($model,'ophth_diagnosis', array()); ?> 
 		  <?php echo $form->error($model,'ophth_diagnosis'); ?> </div></td>
 		  
 		  
 		  
 		  
-          <td><div align="center" style="display: none;"><?php echo $form->labelEx($model,'if_secondary_specify'); ?> 
-		  <?php echo ZHtml::enumDropDownList($model,'if_secondary_specify', array('onchange'=>'moveNextFocus("Dataset_angle_diagnosis");*/')); ?> <?php echo $form->error($model,'if_secondary_specify'); ?> </div></td>
-          <td><div align="center"><?php echo $form->labelEx($model,'angle_diagnosis'); ?> <?php echo ZHtml::enumDropDownList($model,'angle_diagnosis', array()); ?> <?php echo $form->error($model,'angle_diagnosis'); ?> </div></td>
+          <td><div align="center" style="display: none;">
+		  <?php echo $form->labelEx($model,'if_secondary_specify'); ?> 
+		  <?php echo ZHtml::enumDropDownList($model,'if_secondary_specify', array()); ?> 
+		  <?php echo $form->error($model,'if_secondary_specify'); ?> </div></td>
+          
+		  <td><div align="center">
+		  <?php echo $form->labelEx($model,'angle_diagnosis'); ?> 
+		  <?php echo ZHtml::enumDropDownList($model,'angle_diagnosis', array()); ?> 
+		  <?php echo $form->error($model,'angle_diagnosis'); ?> </div></td>
 		 <td>
-		 
-		 
-		 
 		 
 		 
 			<blockquote>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</blockquote>
@@ -194,7 +147,9 @@ for (i = 0; i < field.length; i++)
           <td style="text-align:left">
 			<div align="center">
 				  <?php echo "Prostaglandins  "//$form->labelEx($model,'glaucmed_prostaglandins'); ?> </div>
-				  <div align="center">  <?php echo $form->checkBox($model,'glaucmed_prostaglandins',array('onclick'=>'checkClearMedications();')); ?>
+				  
+				  <div align="center">  
+				  <?php echo $form->checkBox($model,'glaucmed_prostaglandins',array('onclick'=>'checkClearMedications();')); ?>
 				  <?php echo $form->error($model,'glaucmed_prostaglandins'); ?></div>
 		  </td>
 		  
@@ -244,15 +199,15 @@ for (i = 0; i < field.length; i++)
 					
 					<tr>
 					<td width="95" >
-					<?php echo "BCVA  ". ZHtml::enumDropDownList($model,'asmt_bcva', array('onchange'=>'moveNextFocus("Dataset_asmt_cd_ratio");',)); ?>
+					<?php echo "BCVA  ". ZHtml::enumDropDownList($model,'asmt_bcva', array()); ?>
 						<?php echo  $form->error($model,'asmt_bcva'); ?></td>
 						
 					<td width="94">
-					<?php echo "CD ratio ". ZHtml::enumDropDownList($model,'asmt_cd_ratio', array('onchange'=>'moveNextFocus("Dataset_asmt_cornea");',)); ?>
+					<?php echo "CD ratio ". ZHtml::enumDropDownList($model,'asmt_cd_ratio', array()); ?>
 						<?php echo $form->error($model,'asmt_cd_ratio'); ?></td>
 						
 					<td colspan=2>
-					<?php echo "Cornea ".ZHtml::enumDropDownList($model,'asmt_cornea', array('onchange'=>'moveNextFocus("Dataset_asmt_iop1");',)); ?>
+					<?php echo "Cornea ".ZHtml::enumDropDownList($model,'asmt_cornea', array()); ?>
 						<?php echo $form->error($model,'asmt_cornea'); ?></td>
 					<td width="31">&nbsp;</td>
 					</tr>
@@ -287,7 +242,7 @@ for (i = 0; i < field.length; i++)
 					
 					<tr>
 							<td class="inputFieldalign"><?php echo $form->labelEx($model,'asmt_lens'); ?></td>	
-							<td class="inputFieldalign">	<?php echo ZHtml::enumDropDownList($model,'asmt_lens', array('onchange'=>'moveNextFocus("Dataset_previous_post_op_motility");',)); ?>
+							<td class="inputFieldalign">	<?php echo ZHtml::enumDropDownList($model,'asmt_lens', array()); ?>
 									<?php echo $form->error($model,'asmt_lens'); ?></td>
 									
 							<td class="inputFieldalign"><?php echo $form->labelEx($model,'previous_post_op_motility'); ?></td>
@@ -350,29 +305,29 @@ for (i = 0; i < field.length; i++)
 								
 
 		<td><?php echo $form->labelEx($model,'anaesthetic_type'); ?>
-			<?php echo ZHtml::enumDropDownList($model,'anaesthetic_type', array('onchange'=>'moveNextFocus("Dataset_shunt_type");',)); ?>
+			<?php echo ZHtml::enumDropDownList($model,'anaesthetic_type', array()); ?>
 			<?php echo $form->error($model,'anaesthetic_type'); ?></td>
 								
 											
 		<td><?php echo $form->labelEx($model,'shunt_type'); ?>
-			<?php echo ZHtml::enumDropDownList($model,'shunt_type', array('onchange'=>'moveNextFocus("Dataset_anti_metabolites");',)); ?>
+			<?php echo ZHtml::enumDropDownList($model,'shunt_type', array()); ?>
 			<?php echo $form->error($model,'shunt_type'); ?></td>
 								
 				
 		<td><?php echo $form->labelEx($model,'anti_metabolites'); ?>
-			<?php echo ZHtml::enumDropDownList($model,'anti_metabolites', array('onchange'=>'moveNextFocus("Dataset_plate_position");')); ?>
+			<?php echo ZHtml::enumDropDownList($model,'anti_metabolites', array()); ?>
 			<?php echo $form->error($model,'anti_metabolites'); ?></td>
 								
 
 		<td style="vertical-align:left"><?php echo $form->labelEx($model,'plate_position'); ?>
-			<?php echo ZHtml::enumDropDownList($model,'plate_position', array('onchange'=>'moveNextFocus("Dataset_tube_position");')); ?>
+			<?php echo ZHtml::enumDropDownList($model,'plate_position', array()); ?>
 			<?php echo $form->error($model,'plate_position'); ?></td>	
 										
 	</tr>
 	<tr>
 		
 		<td><?php echo $form->labelEx($model,'tube_position'); ?>
-		<?php echo ZHtml::enumDropDownList($model,'tube_position', array('onchange'=>'moveNextFocus("Dataset_plate_limbus_distance");')); ?>
+		<?php echo ZHtml::enumDropDownList($model,'tube_position', array()); ?>
 		<?php echo $form->error($model,'tube_position'); ?></td>						
 								
 		<td>
@@ -380,11 +335,11 @@ for (i = 0; i < field.length; i++)
 		<?php echo $form->error($model,'plate_limbus_distance'); ?></td>
 									
 	<td style="vertical-align:top"><?php echo $form->labelEx($model,'tube_occlusion'); ?>
-		<?php echo ZHtml::enumDropDownList($model,'tube_occlusion', array('onchange'=>'moveNextFocus("");')); ?>
+		<?php echo ZHtml::enumDropDownList($model,'tube_occlusion', array()); ?>
 		<?php echo $form->error($model,'tube_occlusion'); ?></td>													
 														
 	<td style="vertical-align:middle"><?php //echo $form->labelEx($model,'supramid_in_eye'); ?>
-			<?php echo "Supramid In Eye". $form->checkBox($model,'supramid_in_eye',array('onclick'=>'moveNextFocus("Dataset_supramid_distance_from_limbus");')); ?>
+			<?php echo "Supramid In Eye". $form->checkBox($model,'supramid_in_eye',array()); ?>
 			<?php echo $form->error($model,'supramid_in_eye'); ?></td>													
 														
 	</tr>
@@ -420,7 +375,7 @@ for (i = 0; i < field.length; i++)
 								<?php echo $form->error($model,'patch'); ?></td>
 	
 	<td><?php echo $form->labelEx($model,'per_operative_drugs'); ?>
-								<?php echo ZHtml::enumDropDownList($model,'per_operative_drugs', array('onchange'=>'moveNextFocus("");')); ?>
+								<?php echo ZHtml::enumDropDownList($model,'per_operative_drugs', array()); ?>
 								<?php echo $form->error($model,'per_operative_drugs'); ?></td>
 																
 	</tr>
@@ -431,7 +386,7 @@ for (i = 0; i < field.length; i++)
 								<?php echo $form->error($model,'surgical_comments'); ?></td>
 
 		<td colspan=2 style="vertical-align:top"><?php echo $form->labelEx($model,'surgeon_name'); ?>
-								<?php echo $form->textField($model,'surgeon_name',array('value'=>Yii::app()->user->id,'size'=>25,'maxlength'=>25)); ?>
+								<?php echo $form->textField($model,'surgeon_name',array('value'=>Yii::app()->user->name,'size'=>25,'maxlength'=>25)); ?>
 								<?php echo $form->error($model,'surgeon_name'); ?></td>
 	</tr>
 	
