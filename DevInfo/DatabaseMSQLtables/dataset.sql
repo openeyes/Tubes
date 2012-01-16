@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Nov 30, 2011 at 04:26 PM
+-- Generation Time: Jan 16, 2012 at 04:44 PM
 -- Server version: 5.1.41
 -- PHP Version: 5.3.1
 
@@ -31,7 +31,7 @@ CREATE TABLE IF NOT EXISTS `dataset` (
   `hospital_number` varchar(50) NOT NULL,
   `pt_first_name` varchar(50) NOT NULL,
   `pt_last_name` varchar(45) NOT NULL,
-  `ethnicity` enum('-','African-Caribbean','Asian','Caucasian','Mediterranean/North Africa','Sub-continent Asia','Not Available') NOT NULL,
+  `ethnicity` enum('-','African-Caribbean','Oriental','Caucasian','Middle East','Sub-continent Asia','Not Available') NOT NULL,
   `pt_dob` varchar(45) NOT NULL,
   `pt_age` smallint(5) unsigned NOT NULL,
   `pt_sex` enum(' -','Male','Female') NOT NULL,
@@ -97,7 +97,7 @@ CREATE TABLE IF NOT EXISTS `dataset` (
   KEY `patientName` (`pt_first_name`),
   KEY `studyName` (`study_name`),
   KEY `patient_id` (`patient_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 --
 -- Dumping data for table `dataset`
