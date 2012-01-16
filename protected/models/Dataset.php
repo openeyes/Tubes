@@ -272,7 +272,7 @@ class Dataset extends CActiveRecord
 			'viscoelastic' => 'Viscoelastic',
 			'flow_tested' => 'Flow Tested',
 			'surgical_comments' => 'Surgical Comments',
-			'surgeon_name' => 'Primary Surgeon Id',
+			'surgeon_name' => 'Primary Surgeon Name',
 		);
 	}
 
