@@ -1,0 +1,8 @@
+Glaucoma Services Tube Database
+===============================
+
+Basic setup instructions
+------------------------
+
+* Copy protected/config/local-sample.php to protected/config/local.php and edit to suit
+* Create MySQL database and import initial db from protected/migrations/initial.sql.gz
