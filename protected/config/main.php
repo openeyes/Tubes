@@ -1,7 +1,6 @@
 <?php
 
 return CMap::mergeArray(
-	require(dirname(__FILE__).'/local.php'),
 	array(
 		'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
 		'name'=>'Glaucoma Services Tube Database',
@@ -69,5 +68,6 @@ return CMap::mergeArray(
 			'consultantEmail'=>'consultant@example.com'
 			
 		),
-	)
+	),
+	require(dirname(__FILE__).'/local.php')
 );
