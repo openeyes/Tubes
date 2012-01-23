@@ -60,13 +60,8 @@ for (i = 0; i < field.length; i++)
 									'name'=>CHtml::activeName($model,'pt_dob'),
 									'value'=>$model->pt_dob/*Ernest: trying to add a default date value= date("d/m/y")*/,
 									//Ernest: Added this html option to allow addition of onclick event
-									'options'=>array(
-											),
-									'htmlOptions'=>array(
-										'onchange'=>'calcAge()',
-										),
-												
-										)); ?>
+									'options'=>array(),
+									)); ?>
 			<?php echo $form->error($model,'pt_dob'); ?></td>
 			
 		<td><?php echo $form->labelEx($model,'pt_sex'); ?>
@@ -208,21 +203,17 @@ for (i = 0; i < field.length; i++)
 				
 					<td colspan=2 class="inputFieldalign">
 						<?php echo $form->labelEx($model,'asmt_iop1'); ?>
-						<?php echo $form->textField($model,'asmt_iop1',array('size'=>2,'maxlength'=>2,'onchange'=>'calcAverageIOP();valIOP1range();')); ?>
+						<?php echo $form->textField($model,'asmt_iop1',array('size'=>2,'maxlength'=>2)); ?>
 						<?php echo $form->error($model,'asmt_iop1'); ?>
 						<?php echo $form->labelEx($model,'asmt_iop2'); ?>
-						<?php echo $form->textField($model,'asmt_iop2',array('size'=>2,'maxlength'=>2,'onchange'=>'calcAverageIOP();valIOP2range();')); ?>
+						<?php echo $form->textField($model,'asmt_iop2',array('size'=>2,'maxlength'=>2)); ?>
 						<?php echo $form->error($model,'asmt_iop2'); ?>
-					
 						<?php echo $form->labelEx($model,'asmt_iop3'); ?>
-						<?php echo $form->textField($model,'asmt_iop3',array('size'=>2,'maxlength'=>2, 'onchange'=>'calcAverageIOP();valIOP3range();')); ?>
+						<?php echo $form->textField($model,'asmt_iop3',array('size'=>2,'maxlength'=>2)); ?>
 						<?php echo $form->error($model,'asmt_iop3'); ?>
 					</td>
 					
 				
-					<td class="inputFieldalign"><?php echo $form->textField($model,'asmt_avg_iop',array('size'=>3,'maxlength'=>2,'readonly'=>'readonly')); ?>
-					<?php echo $form->error($model,'asmt_avg_iop')."(Average IOP)";?></td>
-						
 					<td width="220" class="inputFieldalign"><?php echo "CCT   ".$form->textField($model,'asmt_cct',array('size'=>6,'maxlength'=>4)); ?>
 						<?php echo $form->error($model,'asmt_cct'); ?>					</td>
 
@@ -288,7 +279,7 @@ for (i = 0; i < field.length; i++)
 	<table border="0" bordercolor="" style="background-color:" width="400" cellpadding="3" cellspacing="3">
 	<tr>
 		<td style="vertical-align:left"><?php echo $form->labelEx($model,'asmt_eye'); ?>
-			<?php echo ZHtml::enumDropDownList($model,'asmt_eye', array('onchange'=>'moveNextFocus("Dataset_anaesthetic_type");',)); ?>
+			<?php echo ZHtml::enumDropDownList($model,'asmt_eye'); ?>
 			<?php echo $form->error($model,'asmt_eye'); ?></td>
 								
 
@@ -359,7 +350,7 @@ for (i = 0; i < field.length; i++)
 								
 								
 		<td><?php echo $form->labelEx($model,'patch'); ?>
-								<?php echo ZHtml::enumDropDownList($model,'patch', array('onchange'=>'moveNextFocus("Dataset_per_operative_drugs");')); ?>
+								<?php echo ZHtml::enumDropDownList($model,'patch'); ?>
 								<?php echo $form->error($model,'patch'); ?></td>
 	
 	<td><?php echo $form->labelEx($model,'per_operative_drugs'); ?>

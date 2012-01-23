@@ -33,7 +33,7 @@ $this->menu=array(
 </div>
 
 <script type="text/javascript">
-$(document).ready(function() {
+$(function() {
 	$('div.form').bind('tabscreate', function() {
 		$('.ui-tabs-panel').each(function() {
 			if($('.error', this).length) {

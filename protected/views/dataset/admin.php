@@ -78,7 +78,6 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 		'asmt_iop1',
 		'asmt_iop2',
 		'asmt_iop3',
-		'asmt_avg_iop',
 		'asmt_cct',
 		'asmt_lens',
 		'previous_post_op_motility',

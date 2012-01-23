@@ -279,3 +279,24 @@ div {
 #Dataset_drawing {
     display: none;
 }
+
+#wzd-menu:before,
+#wzd-menu:after {
+    content:"";
+    display:table;
+}
+#wzd-menu:after {
+	clear: both;
+}
+
+#wzd-menu li {
+	float: left;
+	margin-right: 5px;
+	list-style: none;
+	padding: 4px;
+	color: #999;
+}
+
+#wzd-menu .wzd-active {
+	background: #eef;
+}

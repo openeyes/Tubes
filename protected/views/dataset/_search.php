@@ -176,11 +176,6 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'asmt_avg_iop'); ?>
-		<?php echo $form->textField($model,'asmt_avg_iop'); ?>
-	</div>
-
-	<div class="row">
 		<?php echo $form->label($model,'asmt_cct'); ?>
 		<?php echo $form->textField($model,'asmt_cct',array('size'=>10,'maxlength'=>10)); ?>
 	</div>

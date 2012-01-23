@@ -58,7 +58,6 @@ $this->menu=array(
 		'asmt_iop1',
 		'asmt_iop2',
 		'asmt_iop3',
-		'asmt_avg_iop',
 		'asmt_cct',
 		'asmt_lens',
 		'previous_post_op_motility',

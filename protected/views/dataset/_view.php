@@ -137,10 +137,6 @@
 	<?php echo CHtml::encode($data->asmt_iop3); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('asmt_avg_iop')); ?>:</b>
-	<?php echo CHtml::encode($data->asmt_avg_iop); ?>
-	<br />
-
 	<b><?php echo CHtml::encode($data->getAttributeLabel('asmt_cct')); ?>:</b>
 	<?php echo CHtml::encode($data->asmt_cct); ?>
 	<br />

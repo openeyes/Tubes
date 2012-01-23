@@ -47,6 +47,7 @@ class DatasetController extends Controller
 			$this->attachBehavior('wizard', array(
 				'class' => 'application.extensions.WizardBehavior',
 				'steps' => array('Patient Demographics' => '1', 'Ophthalmic History' => '2', 'Ophthalmic Exam' => '3', 'Surgical Details' => '4'),
+				'autoAdvance' => false,
 			));
 		}
 		return parent::beforeAction($action);

@@ -11,7 +11,6 @@ class DatasetFormStep3 extends CFormModel {
 	public $asmt_iop1;
 	public $asmt_iop2;
 	public $asmt_iop3;
-	public $asmt_avg_iop;
 	public $asmt_cct;
 	public $asmt_lens;
 	public $previous_post_op_motility;
@@ -53,21 +52,23 @@ class DatasetFormStep3 extends CFormModel {
     				'items' => ZHtml::enumItem(Dataset::model(), 'asmt_cornea'),
     				'prompt' => 'Please select:',
 					),
-					'asmt_iop1'=>array(
-						'label' => 'Previous Last 3 IOPs',
-						'type' => 'text',
-					),
-					'asmt_iop2'=>array(
-						'label' => '',
-						'type' => 'text',
-					),
-					'asmt_iop3'=>array(
-						'label' => '',
-						'type' => 'text',
-					),
-					'asmt_avg_iop'=>array(
-						'label' => 'Average IOP',
-						'type' => 'text',
+					'asmt_iop'=>array(
+						'type' => 'form',
+						'title' => 'IOPs',
+						'elements' => array(
+							'asmt_iop1'=>array(
+								'label' => '1',
+								'type' => 'text',
+							),
+							'asmt_iop2'=>array(
+								'label' => '2',
+								'type' => 'text',
+							),
+							'asmt_iop3'=>array(
+								'label' => '3',
+								'type' => 'text',
+							),
+						),
 					),
 					'asmt_cct'=>array(
 						'label' => 'CCT',

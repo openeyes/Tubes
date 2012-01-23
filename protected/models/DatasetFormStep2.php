@@ -46,30 +46,51 @@ class DatasetFormStep2 extends CFormModel {
 					'glaucmed_prostaglandins'=>array(
 						'label' => 'Prostaglandins',
 						'type' => 'checkbox',
+						'attributes' => array(
+							'class' => 'medications-checkbox',
+						),
 					),
 					'glaucmed_pilocarpine'=>array(
 						'label' => 'Pilocarpine',
 						'type' => 'checkbox',
+						'attributes' => array(
+							'class' => 'medications-checkbox',
+						),
 					),
 					'glaucmed_topical_cai'=>array(
 						'label' => 'Topical CAI',
 						'type' => 'checkbox',
+						'attributes' => array(
+							'class' => 'medications-checkbox',
+						),
 					),
 					'glaucmed_sytemic_cai'=>array(
 						'label' => 'Sytemic CAI',
 						'type' => 'checkbox',
+						'attributes' => array(
+							'class' => 'medications-checkbox',
+						),
 					),
 					'glaucmed_alpha_agonists'=>array(
 						'label' => 'Alpha Agonist',
 						'type' => 'checkbox',
+						'attributes' => array(
+							'class' => 'medications-checkbox',
+						),
 					),
 					'glaucmed_none'=>array(
 						'label' => 'None',
 						'type' => 'checkbox',
+						'attributes' => array(
+							'class' => 'medications-checkbox medications-checkbox-ctl',
+						),
 					),
 					'glaucmed_not_available'=>array(
 						'label' => 'Not Available',
 						'type' => 'checkbox',
+						'attributes' => array(
+							'class' => 'medications-checkbox medications-checkbox-ctl',
+						),
 					),
 				);
 	}

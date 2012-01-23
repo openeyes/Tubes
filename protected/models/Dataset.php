@@ -38,7 +38,6 @@
  * @property integer $asmt_iop1
  * @property integer $asmt_iop2
  * @property integer $asmt_iop3
- * @property integer $asmt_avg_iop
  * @property string $asmt_cct
  * @property string $asmt_lens
  * @property string $previous_post_op_motility
@@ -105,7 +104,7 @@ class Dataset extends CActiveRecord
 				glaucmed_topical_cai, glaucmed_sytemic_cai, glaucmed_none, glaucmed_not_available, corticosteroids_topical,
 				corticosteroids_sub_conj, corticosteroids_peri_orbital, corticosteroids_none, corticosteroids_intravitreal,
 				corticosteroids_systemic, corticosteroids_not_available, asmt_bcva, asmt_cd_ratio, asmt_cornea, asmt_iop1,
-				asmt_iop2, asmt_iop3, asmt_avg_iop, asmt_cct, asmt_lens, previous_post_op_motility, previous_surgery_tube,
+				asmt_iop2, asmt_iop3, asmt_cct, asmt_lens, previous_post_op_motility, previous_surgery_tube,
 				previous_surgery_VRSx, previous_surgery_silicone_oil, previous_surgery_silicone_removed,
 				previous_surgery_cyclo_destruction, previous_surgery_trab_npfs_express, previous_surgery_corneal_tx,
 				previous_surgery_comment, asmt_eye, anaesthetic_type, shunt_type, anti_metabolites, per_operative_drugs,
@@ -150,11 +149,10 @@ class Dataset extends CActiveRecord
 	public function rules_step3() {
 		return array(
 			array('asmt_bcva, asmt_cd_ratio, asmt_cornea, asmt_iop1, asmt_iop2, asmt_iop3,
-				asmt_avg_iop, asmt_cct, asmt_lens, previous_post_op_motility, previous_surgery_tube,
+				asmt_cct, asmt_lens, previous_post_op_motility, previous_surgery_tube,
 				previous_surgery_VRSx, previous_surgery_silicone_oil, previous_surgery_silicone_removed,
 				previous_surgery_cyclo_destruction, previous_surgery_trab_npfs_express, previous_surgery_corneal_tx,
 				previous_surgery_comment', 'safe'), // Required for attributes that have no other rules
-			array('asmt_iop1, asmt_iop2, asmt_iop3, asmt_avg_iop', 'required'),
 			array('asmt_iop1, asmt_iop2, asmt_iop3', 'numerical', 'integerOnly' => true),
 			array('asmt_cct', 'length', 'max' => 10),
 			array('asmt_bcva, asmt_cd_ratio, previous_post_op_motility, previous_surgery_tube, previous_surgery_VRSx,
@@ -171,8 +169,8 @@ class Dataset extends CActiveRecord
 		return array(
 			array('surgical_comments, surgeon_name', 'safe'), // Required for attributes that have no other rules
 			array('asmt_eye, anaesthetic_type, shunt_type, anti_metabolites, plate_position,
-				tube_position, tube_occlusion, ligated, patch, plate_limbus_distance, per_operative_drugs, supramid_in_eye,
-				supramid_distance_from_limbus, slit, viscoelastic, flow_tested','required'),
+				tube_position, tube_occlusion, ligated, patch, plate_limbus_distance, per_operative_drugs,
+				supramid_distance_from_limbus','required'),
 			array('plate_limbus_distance', 'numerical', 'integerOnly' => true),
 			array('plate_limbus_distance, supramid_distance_from_limbus', 'length', 'max' => 10),
 			array('asmt_eye, anaesthetic_type, shunt_type, anti_metabolites, plate_position, tube_position, patch,
@@ -241,7 +239,6 @@ class Dataset extends CActiveRecord
 			'asmt_iop1' => 'Previous Last 3 IOPs',
 			'asmt_iop2' => '',
 			'asmt_iop3' => '',
-			'asmt_avg_iop' => 'Average IOP',
 			'asmt_cct' => 'CCT',
 			'asmt_lens' => 'Lens',
 			'previous_post_op_motility' => 'Previous pre-Op motility disturbance',
@@ -274,11 +271,26 @@ class Dataset extends CActiveRecord
 		);
 	}
 
-	public function getPt_age() {
-		return 1;
+	public function getPtAge() {
 		$dob = new DateTime($this->pt_dob);
 		$now = new DateTime();
 		return $now->diff($dob)->y; 
+	}
+
+	
+	public function getAverageIOP() {
+		$count = 0;
+		foreach(array('asmt_iop1','asmt_iop2','asmt_iop3') as $iop) {
+			if($value = $this->$iop) {
+				$count++;
+				$total += abs($value);
+			}
+		}
+		if($count) {
+			return $total/$count;
+		} else {
+			return 0;
+		}
 	}
 	
 	/**
@@ -326,7 +338,6 @@ class Dataset extends CActiveRecord
 		$criteria->compare('asmt_iop1',$this->asmt_iop1);
 		$criteria->compare('asmt_iop2',$this->asmt_iop2);
 		$criteria->compare('asmt_iop3',$this->asmt_iop3);
-		$criteria->compare('asmt_avg_iop',$this->asmt_avg_iop);
 		$criteria->compare('asmt_cct',$this->asmt_cct,true);
 		$criteria->compare('asmt_lens',$this->asmt_lens,true);
 		$criteria->compare('previous_post_op_motility',$this->previous_post_op_motility,true);
@@ -365,15 +376,14 @@ class Dataset extends CActiveRecord
 	
 
 	/**
-     * Override the before validate method to put in the current userId as the Primary surgeon identifier
-     *Ernest::Adapted from::Bill Aylward RDDataset/Dataset Model class
-	 This associates the user to the Primary surgeon
-     */
-    protected function beforeValidate()
-    {
+	 * 
+	 * Override the before validate method to put in the current userId as the Primary surgeon identifier
+	 * Ernest::Adapted from::Bill Aylward RDDataset/Dataset Model class
+	 * This associates the user to the Primary surgeon
+	 */
+    protected function beforeValidate() {
         // Save current userId
-        if ($this->isNewRecord)
-        {
+        if ($this->isNewRecord) {
             $this->surgeon_name= Yii::app()->user->id;
         }
         

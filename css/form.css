@@ -42,7 +42,8 @@ div.form input,
 div.form textarea,
 div.form select
 {
-	margin: 0.2em 0 0.5em 0;
+	margin: 4px 6px;
+	float: left;
 }
 
 div.form fieldset
@@ -59,25 +60,35 @@ div.form .action
 	margin-bottom: 10px;
 }
 
-/*
-div.form label
-{
-	font-weight: bold;
-	font-size: 0.9em;
-	display: block;
-}
-*/
 div.form label {
 	text-align: right;
-	margin-top: 2px;
-	margin-bottom: 2px;
-	margin-right: 20px;
+	margin: 4px 20px 4px 6px;
 	clear: left;
 	float: left;
 	height: 16px;
-	width: 250px;
+	width: 300px;
+}
+
+div.form .row:before,
+div.form .row:after {
+    content:"";
+    display:table;
+}
+div.form .row:after {
+    clear:both;
+}
+
+div.form .row .errorMessage {
+	color: red;
 	font-size: 0.9em;
-	padding-top: 0.1em;	
+	margin: 4px 6px;
+	float: left;
+}
+
+div.form .row .hint {
+	font-size: 0.9em;
+	margin: 4px 6px;
+	float: left;
 }
 
 button.imgbutton {

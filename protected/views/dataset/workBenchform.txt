@@ -40,12 +40,6 @@
 					</td>
 					
 				
-					<td class="inputFieldalign"><?php echo $form->textField($model,'asmt_avg_iop',array('size'=>3,'maxlength'=>2)); ?>
-					<?php echo $form->error($model,'asmt_avg_iop')."(Average IOP)";?></td>
-						
-				
-					
-					
 					<td class="inputFieldalign"><?php echo "CCT   ".$form->textField($model,'asmt_cct',array('size'=>6,'maxlength'=>4)); ?>
 						<?php echo $form->error($model,'asmt_cct'); ?>
 					</td>
