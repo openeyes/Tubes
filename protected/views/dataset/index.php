@@ -25,9 +25,4 @@ $this->menu=array(
 		'pt_first_name',
 		'pt_last_name',
     ),
-	
-	
-	
-	
-
 )); ?>

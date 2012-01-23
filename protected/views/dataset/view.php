@@ -24,7 +24,6 @@ $this->menu=array(
 	'data'=>$model,
 	'attributes'=>array(
 		//'id',
-		//'patient_id',
 		'hospital_number',
 		'pt_first_name',
 		'pt_last_name',

@@ -4,10 +4,6 @@
 	<?php echo CHtml::link(CHtml::encode($data->id), array('view', 'id'=>$data->id)); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('patient_id')); ?>:</b>
-	<?php echo CHtml::encode($data->patient_id); ?>
-	<br />
-
 	<b><?php echo CHtml::encode($data->getAttributeLabel('hospital_number')); ?>:</b>
 	<?php echo CHtml::encode($data->hospital_number); ?>
 	<br />
@@ -29,10 +25,6 @@
 	<br />
 
 	<?php /*
-	<b><?php echo CHtml::encode($data->getAttributeLabel('pt_age')); ?>:</b>
-	<?php echo CHtml::encode($data->pt_age); ?>
-	<br />
-
 	<b><?php echo CHtml::encode($data->getAttributeLabel('pt_sex')); ?>:</b>
 	<?php echo CHtml::encode($data->pt_sex); ?>
 	<br />

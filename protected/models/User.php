@@ -12,9 +12,6 @@
  * @property string $last_name
  * @property string $profile
  * @property string $email
- *
- * The followings are the available model relations:
- * @property Patient[] $patients
  */
 class User extends CActiveRecord
 {
@@ -60,10 +57,7 @@ class User extends CActiveRecord
 	 */
 	public function relations()
 	{
-		// NOTE: you may need to adjust the relation name and the related
-		// class name for the relations automatically generated below.
 		return array(
-			'patients' => array(self::HAS_MANY, 'Patient', 'userId'),
 		);
 	}
 

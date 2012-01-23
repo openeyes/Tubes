@@ -4,8 +4,8 @@ $cs->registerScriptFile(Yii::app()->baseUrl . '/js/jquery-1.5.1.min.js', CClient
 ?>
 <link rel="stylesheet" href="<?php echo Yii::app()->request->baseUrl; ?>/css/formWizard.css" type="text/css" />
 <link rel="stylesheet" href="<?php echo Yii::app()->request->baseUrl; ?>/css/ernestCustomiseForm.css" type="text/css" />
-<script language="JavaScript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/formToWizard.js" type="text/javascript"></script>
-<script language="JavaScript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/ernestFormFunctions.js" type="text/javascript"></script>
+<script src="<?php echo Yii::app()->request->baseUrl; ?>/js/formToWizard.js" type="text/javascript"></script>
+<script src="<?php echo Yii::app()->request->baseUrl; ?>/js/ernestFormFunctions.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 function uncheckAll(field)
@@ -24,17 +24,10 @@ for (i = 0; i < field.length; i++)
 <i>Fields with <span class="required">*</span> are required</i>
 <?php echo $form->errorSummary($model); ?>
  
- 
-	<div class="row">
-				<?php //Ernest:: To do-> create relationships with patient table::echo $form->labelEx($model,'patient_id'); ?>
-				<?php echo $form->hiddenField($model,'patient_id',array('size'=>24,'maxlength'=>10)); ?>
-				<?php //echo $form->error($model,'patient_id'); ?>
-	</div>
-
 <fieldset>
 	  <legend>Patient Demographics </legend>
 	  <div class="demographicMarginAlign">
-	<table border="1" bordercolor="" style="background-color:" width="400" cellpadding="2" cellspacing="2">
+	<table border="1" width="400" cellpadding="2" cellspacing="2">
 	<tr class="borders">
 		<td colspan=><?php echo $form->labelEx($model,'hospital_number'); ?>
 					<?php echo $form->textField($model,'hospital_number',array()); ?>
@@ -76,11 +69,6 @@ for (i = 0; i < field.length; i++)
 										)); ?>
 			<?php echo $form->error($model,'pt_dob'); ?></td>
 			
-		<td><?php echo $form->labelEx($model,'pt_age'); ?>
-			<?php echo $form->textField($model,'pt_age',array())." (yrs)"; ?>
-			<?php echo $form->error($model,'pt_age'); ?></td>
-			
-							
 		<td><?php echo $form->labelEx($model,'pt_sex'); ?>
 			<?php echo ZHtml::enumDropDownList($model,'pt_sex', array()); ?>
 			<?php echo $form->error($model,'pt_sex'); ?></td>

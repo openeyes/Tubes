@@ -5,13 +5,11 @@
  *
  * The followings are the available columns in table 'dataset':
  * @property integer $id
- * @property string $patient_id
  * @property string $hospital_number
  * @property string $pt_first_name
  * @property string $pt_last_name
  * @property string $ethnicity
  * @property string $pt_dob
- * @property integer $pt_age
  * @property string $pt_sex
  * @property string $surg_op_date
  * @property string $pt_part_of_study
@@ -70,9 +68,6 @@
  * @property string $flow_tested
  * @property string $surgical_comments
  * @property string $surgeon_name
- *
- * The followings are the available model relations:
- * @property Patient $patient
  */
 class Dataset extends CActiveRecord
 {
@@ -103,9 +98,8 @@ class Dataset extends CActiveRecord
 		
 		// Additional rules
 		$rules = array_merge($rules, array(
-			array('patient_id', 'length', 'max' => 10),
 			// Search rules
-			array('id, patient_id, hospital_number, pt_first_name, pt_last_name, ethnicity, pt_dob, pt_age, pt_sex,
+			array('id, hospital_number, pt_first_name, pt_last_name, ethnicity, pt_dob, pt_sex,
 				surg_op_date, pt_part_of_study, study_name, ophth_diagnosis, angle_diagnosis, if_secondary_specify,
 				glaucmed_beta_blockers, glaucmed_prostaglandins, glaucmed_pilocarpine, glaucmed_alpha_agonists,
 				glaucmed_topical_cai, glaucmed_sytemic_cai, glaucmed_none, glaucmed_not_available, corticosteroids_topical,
@@ -127,8 +121,7 @@ class Dataset extends CActiveRecord
 	public function rules_step1() {
 		return array(
 			array('pt_part_of_study, study_name', 'safe'), // Required for attributes that have no other rules
-			array('hospital_number, pt_last_name, pt_first_name, surg_op_date, pt_dob, pt_age, pt_sex, ethnicity', 'required'),
-			array('pt_age', 'numerical', 'integerOnly' => true),
+			array('hospital_number, pt_last_name, pt_first_name, surg_op_date, pt_dob, pt_sex, ethnicity', 'required'),
 			array('hospital_number, pt_first_name', 'length', 'max' => 50),
 			array('pt_last_name', 'length', 'max' => 45),
 			array('ethnicity', 'length', 'max' => 26),
@@ -193,14 +186,21 @@ class Dataset extends CActiveRecord
 	 */
 	public function relations()
 	{
-		// NOTE: you may need to adjust the relation name and the related
-		// class name for the relations automatically generated below.
 		return array(
-			//'patient' => array(self::BELONGS_TO, 'Patient', 'patient_id'),
 			'user' => array(self::BELONGS_TO, 'User', 'userId'),//added on the 2nd October for user access
 		);
 	}
 
+	public function behaviors() {
+		return array(
+			// Add created/updated datestamps to records
+			'CTimestampBehavior' => array(
+				'class' => 'zii.behaviors.CTimestampBehavior',
+				'setUpdateOnCreate' => true,
+			)
+		);
+	}
+	
 	/**
 	 * @return array customized attribute labels (name=>label)
 	 */
@@ -208,13 +208,11 @@ class Dataset extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'patient_id' => 'Patient',
 			'hospital_number' => 'Hospital Number',
 			'pt_first_name' => ' First Name',
 			'pt_last_name' => ' Last Name',
 			'ethnicity' => ' Ethnicity',
 			'pt_dob' => 'Date of Birth',
-			'pt_age' => 'Age',
 			'pt_sex' => 'Gender',
 			'surg_op_date' => 'Surgery Date',
 			'pt_part_of_study' => 'Patient part Of Study ?',
@@ -276,6 +274,13 @@ class Dataset extends CActiveRecord
 		);
 	}
 
+	public function getPt_age() {
+		return 1;
+		$dob = new DateTime($this->pt_dob);
+		$now = new DateTime();
+		return $now->diff($dob)->y; 
+	}
+	
 	/**
 	 * Retrieves a list of models based on the current search/filter conditions.
 	 * @return CActiveDataProvider the data provider that can return the models based on the search/filter conditions.
@@ -288,13 +293,11 @@ class Dataset extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id);
-		$criteria->compare('patient_id',$this->patient_id,true);
 		$criteria->compare('hospital_number',$this->hospital_number,true);
 		$criteria->compare('pt_first_name',$this->pt_first_name,true);
 		$criteria->compare('pt_last_name',$this->pt_last_name,true);
 		$criteria->compare('ethnicity',$this->ethnicity,true);
 		$criteria->compare('pt_dob',$this->pt_dob,true);
-		$criteria->compare('pt_age',$this->pt_age);
 		$criteria->compare('pt_sex',$this->pt_sex,true);
 		$criteria->compare('surg_op_date',$this->surg_op_date,true);
 		$criteria->compare('pt_part_of_study',$this->pt_part_of_study,true);

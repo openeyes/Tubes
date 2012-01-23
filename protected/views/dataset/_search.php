@@ -11,11 +11,6 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'patient_id'); ?>
-		<?php echo $form->textField($model,'patient_id',array('size'=>10,'maxlength'=>10)); ?>
-	</div>
-
-	<div class="row">
 		<?php echo $form->label($model,'hospital_number'); ?>
 		<?php echo $form->textField($model,'hospital_number',array('size'=>50,'maxlength'=>50)); ?>
 	</div>
@@ -38,11 +33,6 @@
 	<div class="row">
 		<?php echo $form->label($model,'pt_dob'); ?>
 		<?php echo $form->textField($model,'pt_dob',array('size'=>45,'maxlength'=>45)); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->label($model,'pt_age'); ?>
-		<?php echo $form->textField($model,'pt_age'); ?>
 	</div>
 
 	<div class="row">
