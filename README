@@ -10,3 +10,28 @@ Basic setup instructions
 
 * Copy protected/config/local-sample.php to protected/config/local.php and edit to suit
 * Create MySQL database and import initial db from protected/migrations/initial.sql.gz
+
+Tortoise GIT
+------------
+
+To commit changes to local repository
+
+* Right click -> Git commit => "master"
+* Write message (comment)
+* Click OK
+* (Optional) push committed changes to github by clicking Push
+
+To push changes to github
+
+* Right click -> Tortoise GIT -> Push
+* OK
+
+To updates local repository
+
+* Right click -> Tortoise GIT -> Pull
+* OK
+
+You can also use sync to do a lot of this
+
+* Right click -> Git Sync...
+* Pull or push as required
