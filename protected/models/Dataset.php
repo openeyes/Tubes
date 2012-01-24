@@ -169,8 +169,7 @@ class Dataset extends CActiveRecord
 		return array(
 			array('surgical_comments, surgeon_name', 'safe'), // Required for attributes that have no other rules
 			array('asmt_eye, anaesthetic_type, shunt_type, anti_metabolites, plate_position,
-				tube_position, tube_occlusion, ligated, patch, plate_limbus_distance, per_operative_drugs,
-				supramid_distance_from_limbus','required'),
+				tube_position, tube_occlusion, ligated, patch, plate_limbus_distance, per_operative_drugs','required'),
 			array('plate_limbus_distance', 'numerical', 'integerOnly' => true),
 			array('plate_limbus_distance, supramid_distance_from_limbus', 'length', 'max' => 10),
 			array('asmt_eye, anaesthetic_type, shunt_type, anti_metabolites, plate_position, tube_position, patch,
