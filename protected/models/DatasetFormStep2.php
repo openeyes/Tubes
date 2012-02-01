@@ -43,6 +43,17 @@ class DatasetFormStep2 extends CFormModel {
     				'items' => ZHtml::enumItem(Dataset::model(),  'angle_diagnosis'),
     				'prompt' => 'Please select:',
 					),
+					
+					
+					//Added Beta blockers @ Ernest
+					'glaucmed_beta_blockers'=>array(
+						'label' => 'Beta blockers',
+						'type' => 'checkbox',
+						'attributes' => array(
+							'class' => 'medications-checkbox',
+						),
+					),
+					
 					'glaucmed_prostaglandins'=>array(
 						'label' => 'Prostaglandins',
 						'type' => 'checkbox',
@@ -50,6 +61,10 @@ class DatasetFormStep2 extends CFormModel {
 							'class' => 'medications-checkbox',
 						),
 					),
+					
+					
+					
+					
 					'glaucmed_pilocarpine'=>array(
 						'label' => 'Pilocarpine',
 						'type' => 'checkbox',
