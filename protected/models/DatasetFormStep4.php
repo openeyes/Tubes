@@ -67,7 +67,7 @@ class DatasetFormStep4 extends CFormModel {
     				'prompt' => 'Please select:',
 					),
 					'plate_limbus_distance'=>array(
-						'label' => 'Place Limbus Distance (mm)',
+						'label' => 'Plate Limbus Distance (mm)',
 						'type' => 'text',
 					),
 					'tube_occlusion'=>array(
