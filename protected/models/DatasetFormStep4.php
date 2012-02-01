@@ -81,7 +81,7 @@ class DatasetFormStep4 extends CFormModel {
 					'supramid_distance_from_limbus'=>array(
 						'label' => 'Supramid Distance from Limbus',
 						'type' => 'text',
-						'hint' => ' if supramid not in the eye',
+						'hint' => ' if supramid in the eye',
 					),
 					'ligated'=>array(
 						'type' => 'dropdownlist',
