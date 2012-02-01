@@ -44,7 +44,7 @@ class DatasetFormStep1 extends CFormModel {
 						'options' => array(
 							'changeMonth' => true,
 							'changeYear' => true,
-							'yearRange' => '+0:+2',
+							'yearRange' => '+0:+10',
 							'dateFormat'=>'dd-mm-yy',
 						),
 					),
