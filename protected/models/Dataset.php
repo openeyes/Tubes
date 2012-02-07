@@ -67,6 +67,8 @@
  * @property string $flow_tested
  * @property string $surgical_comments
  * @property string $surgeon_name
+ * @property integer $PtAge
+ * @property float $AverageIOP
  */
 class Dataset extends CActiveRecord
 {
@@ -210,6 +212,7 @@ class Dataset extends CActiveRecord
 			'pt_last_name' => ' Last Name',
 			'ethnicity' => ' Ethnicity',
 			'pt_dob' => 'Date of Birth',
+			'PtAge' => 'Age',
 			'pt_sex' => 'Gender',
 			'surg_op_date' => 'Surgery Date',
 			'pt_part_of_study' => 'Patient part Of Study ?',
@@ -235,6 +238,7 @@ class Dataset extends CActiveRecord
 			'asmt_bcva' => 'BCVA',
 			'asmt_cd_ratio' => 'Cd ratio',
 			'asmt_cornea' => 'Cornea',
+			'AverageIOP' => 'Average IOP',
 			'asmt_iop1' => 'Previous Last 3 IOPs',
 			'asmt_iop2' => '',
 			'asmt_iop3' => '',
@@ -270,6 +274,9 @@ class Dataset extends CActiveRecord
 		);
 	}
 
+	/**
+	 * Calculate patient age from DOB
+	 */
 	public function getPtAge() {
 		$dob = new DateTime($this->pt_dob);
 		$now = new DateTime();
@@ -277,8 +284,12 @@ class Dataset extends CActiveRecord
 	}
 
 	
+	/**
+	 * Calculated average IOP based on 3 (non 0) values
+	 */
 	public function getAverageIOP() {
 		$count = 0;
+		$total = 0;
 		foreach(array('asmt_iop1','asmt_iop2','asmt_iop3') as $iop) {
 			if($value = $this->$iop) {
 				$count++;
@@ -288,7 +299,7 @@ class Dataset extends CActiveRecord
 		if($count) {
 			return $total/$count;
 		} else {
-			return 0;
+			return 'N/A';
 		}
 	}
 	

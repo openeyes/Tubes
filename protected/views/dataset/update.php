@@ -1,20 +1,18 @@
 <?php
 $this->breadcrumbs=array(
-	'Datasets'=>array('index'),
+	'Records'=>array('index'),
 	$model->id=>array('view','id'=>$model->id),
 	'Update',
 );
 
 $this->menu=array(
-	array('label'=>'Display Records', 'url'=>array('index')),
-	array('label'=>'Create Dataset', 'url'=>array('create')),
-	array('label'=>'View Dataset', 'url'=>array('view', 'id'=>$model->id)),
-	array('label'=>'Manage Dataset', 'url'=>array('admin')),
+	array('label'=>'List Records', 'url'=>array('index')),
+	array('label'=>'View Record', 'url'=>array('view', 'id'=>$model->id)),
+	array('label'=>'Manage Records', 'url'=>array('admin')),
 );
 ?>
 
-<h1>Update Dataset <?php echo $model->id; ?></h1>
-
+<h1>Update Patient Record (<?php echo $model->hospital_number; ?>)</h1>
 <div class="form">
 <?php
 	echo $form->renderBegin();
