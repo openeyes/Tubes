@@ -59,14 +59,20 @@ class DatasetFormStep3 extends CFormModel {
 							'asmt_iop1'=>array(
 								'label' => '1',
 								'type' => 'text',
+								'size'=>5,
+								'maxlength'=>2,
 							),
 							'asmt_iop2'=>array(
 								'label' => '2',
 								'type' => 'text',
+								'size'=>5,
+								'maxlength'=>2,
 							),
 							'asmt_iop3'=>array(
 								'label' => '3',
 								'type' => 'text',
+								'size'=>5,
+								'maxlength'=>2,
 							),
 						),
 					),
