@@ -111,13 +111,14 @@ class DatasetFormStep4 extends CFormModel {
 					'surgical_comments'=>array(
 						'type' => 'textarea',
 						'attributes' => array(
-							'rows' => 8,
+							'rows' => 3,
 							'cols' => 50,
 						),
 					),
 					'surgeon_name'=>array(
 						'label' => 'Primary Surgeon Name',
 						'type' => 'text',
+						'value'=>'',
 					),
 				);
 	}
