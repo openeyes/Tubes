@@ -1,5 +1,5 @@
 /**
- * Dataset form enhancments 
+ * Dataset form enhancements 
  */
 $(function() {
 	
