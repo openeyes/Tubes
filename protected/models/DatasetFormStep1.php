@@ -40,6 +40,7 @@ class DatasetFormStep1 extends CFormModel {
 					),
 					'surg_op_date'=>array(
 						'label' => 'Surgery Date (DD-MM-YYYY)',
+						'value'=> '',
 						'type' => 'zii.widgets.jui.CJuiDatePicker',
 						'options' => array(
 							'changeMonth' => true,
