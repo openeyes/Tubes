@@ -69,6 +69,9 @@ class DatasetFormStep4 extends CFormModel {
 					'plate_limbus_distance'=>array(
 						'label' => 'Plate Limbus Distance (mm)',
 						'type' => 'text',
+						'size'=>2,
+						'maxlength'=>2,
+						
 					),
 					'tube_occlusion'=>array(
 						'type' => 'dropdownlist',
@@ -79,8 +82,10 @@ class DatasetFormStep4 extends CFormModel {
 						'type' => 'checkbox',
 					),
 					'supramid_distance_from_limbus'=>array(
-						'label' => 'Supramid Distance from Limbus',
+						'label' => 'Supramid Distance from Limbus (mm)',
 						'type' => 'text',
+						'size'=>2,
+						'maxlength'=>2,
 						'hint' => ' if supramid not in the eye',
 					),
 					'ligated'=>array(

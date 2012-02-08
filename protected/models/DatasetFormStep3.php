@@ -77,8 +77,10 @@ class DatasetFormStep3 extends CFormModel {
 						),
 					),
 					'asmt_cct'=>array(
-						'label' => 'CCT',
-						'type' => 'text',
+								'label' => 'CCT',
+								'type' => 'text',
+								'size'=>7,
+								'maxlength'=>4,
 					),
 					'asmt_lens'=>array(
 						'label' => 'Lens',
@@ -106,7 +108,7 @@ class DatasetFormStep3 extends CFormModel {
 									'type' => 'checkbox',
 								),
 								'previous_surgery_silicone_oil'=>array(
-									'label' => 'Silicon',
+									'label' => 'Silicon Oil',
 									'type' => 'checkbox',
 								),
 								'previous_surgery_silicone_removed'=>array(
