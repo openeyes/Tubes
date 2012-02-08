@@ -38,7 +38,7 @@
 		<?php if(isset($this->breadcrumbs)):?><?php $this->widget('zii.widgets.CBreadcrumbs', array('links'=>$this->breadcrumbs)); ?><!-- breadcrumbs --><?php endif?>
 		<?php echo $content; ?>
 		<div id="footer">
-			Copyright &copy; 2012 Designed by Ernest E-M F(MEH) The OpenEyes Foundation.<br/>
+			Copyright 2012 Designed by Ernest Elikem M F and Jamie Neil&nbsp;(MEH) The OpenEyes Foundation.<br/>
 			All Rights Reserved.<br/>
 			Moorfields Eye Hospital OpenEyes Project
 		</div><!-- footer -->
