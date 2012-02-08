@@ -54,7 +54,7 @@ class DatasetFormStep3 extends CFormModel {
 					),
 					'asmt_iop'=>array(
 						'type' => 'form',
-						'title' => 'IOPs',
+						'title' => 'Previous last 3 IOPs',
 						'elements' => array(
 							'asmt_iop1'=>array(
 								'label' => '1',
@@ -86,42 +86,50 @@ class DatasetFormStep3 extends CFormModel {
     				'items' => ZHtml::enumItem(Dataset::model(), 'previous_post_op_motility'),
     				'prompt' => 'Please select:',
 					),
-					'previous_surgery_tube'=>array(
-						'label' => 'Tube',
-						'type' => 'checkbox',
-					),
-					'previous_surgery_VRSx'=>array(
-						'label' => 'VRSx',
-						'type' => 'checkbox',
-					),
-					'previous_surgery_silicone_oil'=>array(
-						'label' => 'Silicon',
-						'type' => 'checkbox',
-					),
-					'previous_surgery_silicone_removed'=>array(
-						'label' => 'Silicon Removed?',
-						'type' => 'checkbox',
-					),
-					'previous_surgery_cyclo_destruction'=>array(
-						'label' => 'Cyclo Destruction',
-						'type' => 'checkbox',
-					),
-					'previous_surgery_trab_npfs_express'=>array(
-						'label' => 'Trab/NPFS/Express',
-						'type' => 'checkbox',
-					),
-					'previous_surgery_corneal_tx'=>array(
-						'label' => 'Corneal Tx',
-						'type' => 'checkbox',
+
+			'previous_surgery'=>array(
+					'type' => 'form',
+					'title' => 'Previous Surgery',
+					'elements' => array(
+								'previous_surgery_tube'=>array(
+									'label' => 'Tube',
+									'type' => 'checkbox',
+								),
+								'previous_surgery_VRSx'=>array(
+									'label' => 'VRSx',
+									'type' => 'checkbox',
+								),
+								'previous_surgery_silicone_oil'=>array(
+									'label' => 'Silicon',
+									'type' => 'checkbox',
+								),
+								'previous_surgery_silicone_removed'=>array(
+									'label' => 'Silicon Removed?',
+									'type' => 'checkbox',
+								),
+								'previous_surgery_cyclo_destruction'=>array(
+									'label' => 'Cyclo Destruction',
+									'type' => 'checkbox',
+								),
+								'previous_surgery_trab_npfs_express'=>array(
+									'label' => 'Trab/NPFS/Express',
+									'type' => 'checkbox',
+								),
+								'previous_surgery_corneal_tx'=>array(
+									'label' => 'Corneal Tx',
+									'type' => 'checkbox',
+								),
+						),
 					),
 					'previous_surgery_comment'=>array(
 						'type' => 'textarea',
 						'attributes' => array(
-							'rows' => 8,
+							'rows' => 3,
 							'cols' => 50,
 						),
 					),
-				);
+		);
+				
 	}
 	
 	public function getForm() {
