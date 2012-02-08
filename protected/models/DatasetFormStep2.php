@@ -8,6 +8,7 @@ class DatasetFormStep2 extends CFormModel {
 	public $ophth_diagnosis;
 	public $if_secondary_specify;
 	public $angle_diagnosis;
+	public $glaucmed_beta_blockers;//Er update
 	public $glaucmed_prostaglandins;
 	public $glaucmed_pilocarpine;
 	public $glaucmed_topical_cai;
@@ -15,6 +16,7 @@ class DatasetFormStep2 extends CFormModel {
 	public $glaucmed_alpha_agonists;
 	public $glaucmed_none;
 	public $glaucmed_not_available;
+	public $glaucomaMedicationheader;//Er update
 
 	private $_scenario='wizard';
 	
@@ -44,9 +46,12 @@ class DatasetFormStep2 extends CFormModel {
     				'prompt' => 'Please select:',
 					),
 					
-					
-					//Added Beta blockers @ Ernest
-					'glaucmed_beta_blockers'=>array(
+	//Glaucoma Medication header
+		'glaucomaMedicationheade'=>array(
+		'type' => 'form',
+		'title' => 'Glaucoma Medications',
+		'elements' =>array(
+			'glaucmed_beta_blockers'=>array(
 						'label' => 'Beta blockers',
 						'type' => 'checkbox',
 						'attributes' => array(
@@ -54,18 +59,15 @@ class DatasetFormStep2 extends CFormModel {
 						),
 					),
 					
-					'glaucmed_prostaglandins'=>array(
+			'glaucmed_prostaglandins'=>array(
 						'label' => 'Prostaglandins',
 						'type' => 'checkbox',
 						'attributes' => array(
 							'class' => 'medications-checkbox',
 						),
 					),
-					
-					
-					
-					
-					'glaucmed_pilocarpine'=>array(
+			
+			'glaucmed_pilocarpine'=>array(
 						'label' => 'Pilocarpine',
 						'type' => 'checkbox',
 						'attributes' => array(
@@ -93,6 +95,7 @@ class DatasetFormStep2 extends CFormModel {
 							'class' => 'medications-checkbox',
 						),
 					),
+				
 					'glaucmed_none'=>array(
 						'label' => 'None',
 						'type' => 'checkbox',
@@ -107,6 +110,10 @@ class DatasetFormStep2 extends CFormModel {
 							'class' => 'medications-checkbox medications-checkbox-ctl',
 						),
 					),
+		
+		),
+	),			
+					
 				);
 	}
 	
