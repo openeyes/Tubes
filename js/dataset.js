@@ -61,6 +61,17 @@ function secondaryToggle() {
 	}
 }
 
+
+// Only show silicon removed? field if silicon is checked Ernest
+function siliconRemovedToggle() {
+	if($('#DatasetFormStep3_previous_surgery_silicone_oil').attr('checked')) {
+		$('#DatasetFormStep3_previous_surgery_silicone_removed').parent().show();			
+	} else {
+		$('#DatasetFormStep3_previous_surgery_silicone_removed').parent().hide();
+	}	
+}
+
+
 // Show/hide supramid distance depending on in eye
 function supramidToggle() {
 	if($('#DatasetFormStep4_supramid_in_eye').attr('checked')) {
