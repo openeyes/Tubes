@@ -16,8 +16,7 @@ class DatasetFormStep2 extends CFormModel {
 	public $glaucmed_alpha_agonists;
 	public $glaucmed_none;
 	public $glaucmed_not_available;
-	public $glaucomaMedicationheader;//Er update
-
+	
 	private $_scenario='wizard';
 	
 	/**
@@ -47,10 +46,11 @@ class DatasetFormStep2 extends CFormModel {
 					),
 					
 	//Glaucoma Medication header
-		'glaucomaMedicationheade'=>array(
+		'glaucomaMedicationheader'=>array(
 		'type' => 'form',
 		'title' => 'Glaucoma Medications',
 		'elements' =>array(
+			//Added Beta Blockers
 			'glaucmed_beta_blockers'=>array(
 						'label' => 'Beta blockers',
 						'type' => 'checkbox',
