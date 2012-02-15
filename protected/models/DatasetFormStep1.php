@@ -1,3 +1,4 @@
+
 <?php
 
 /**
@@ -10,6 +11,7 @@ class DatasetFormStep1 extends CFormModel {
 	public $pt_first_name;
 	public $surg_op_date;
 	public $pt_dob;
+	public $ptAge;
 	public $pt_sex;
 	public $ethnicity;
 	public $pt_part_of_study;
@@ -37,16 +39,19 @@ class DatasetFormStep1 extends CFormModel {
 						'label' => 'First Name',
 						'type' => 'text',
 						'size' => 50,
+						
 					),
 					'surg_op_date'=>array(
 						'label' => 'Surgery Date (DD-MM-YYYY)',
-						'value'=> '',
 						'type' => 'zii.widgets.jui.CJuiDatePicker',
+												
 						'options' => array(
 							'changeMonth' => true,
 							'changeYear' => true,
 							'yearRange' => '+0:+10',
-							'dateFormat'=>'dd-mm-yy',
+							'dateFormat'=>'d-m-yy',
+							'defaultDate'=>'+0',//option doesn't seem to work-Er
+							
 							
 						),
 					),
@@ -60,6 +65,12 @@ class DatasetFormStep1 extends CFormModel {
 							'dateFormat'=>'dd-mm-yy',
 						),
 					),
+					//adding age field Ernest
+					'PtAge'=>array(
+						'label' => 'Patient Age',
+						'type' => 'text',
+						),
+					
 					'pt_sex'=>array(
 						'label' => 'Gender',
 						'type' => 'dropdownlist',
