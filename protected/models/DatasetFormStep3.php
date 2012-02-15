@@ -108,11 +108,11 @@ class DatasetFormStep3 extends CFormModel {
 									'type' => 'checkbox',
 								),
 								'previous_surgery_silicone_oil'=>array(
-									'label' => 'Silicon Oil',
+									'label' => 'Silicone Oil',
 									'type' => 'checkbox',
 								),
 								'previous_surgery_silicone_removed'=>array(
-									'label' => 'Silicon Removed?',
+									'label' => 'Silicone Removed?',
 									'type' => 'checkbox',
 								),
 								'previous_surgery_cyclo_destruction'=>array(
@@ -124,7 +124,7 @@ class DatasetFormStep3 extends CFormModel {
 									'type' => 'checkbox',
 								),
 								'previous_surgery_corneal_tx'=>array(
-									'label' => 'Corneal Tx',
+									'label' => 'Penetrating Keratoplasty',
 									'type' => 'checkbox',
 								),
 						),
