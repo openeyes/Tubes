@@ -47,6 +47,7 @@ class DatasetFormStep1 extends CFormModel {
 							'changeYear' => true,
 							'yearRange' => '+0:+10',
 							'dateFormat'=>'dd-mm-yy',
+							
 						),
 					),
 					'pt_dob'=>array(
@@ -71,10 +72,11 @@ class DatasetFormStep1 extends CFormModel {
     				'prompt' => 'Please select:',
 					),
 					'pt_part_of_study'=>array(
-						'label' => 'Patient part of study',
+						'label' => 'Is this patient in a study ?',
 						'type' => 'checkbox',
 					),
 					'study_name'=>array(
+					'label'=>'If so, which study?',
 						'type' => 'text',
 					),
 				);
