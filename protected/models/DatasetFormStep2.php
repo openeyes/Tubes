@@ -48,7 +48,7 @@ class DatasetFormStep2 extends CFormModel {
 	//Glaucoma Medication header
 		'glaucomaMedicationheader'=>array(
 		'type' => 'form',
-		'title' => 'Glaucoma Medications',
+		'title' => 'Preoperative Medications',
 		'elements' =>array(
 			//Added Beta Blockers
 			'glaucmed_beta_blockers'=>array(
