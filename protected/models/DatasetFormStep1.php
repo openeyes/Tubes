@@ -1,3 +1,4 @@
+
 <?php
 
 /**
@@ -40,13 +41,13 @@ class DatasetFormStep1 extends CFormModel {
 					),
 					'surg_op_date'=>array(
 						'label' => 'Surgery Date (DD-MM-YYYY)',
-						'value'=> '',
+						'value'=>'', //date('d-m-Y') need to add default current date here Ernest,
 						'type' => 'zii.widgets.jui.CJuiDatePicker',
 						'options' => array(
 							'changeMonth' => true,
 							'changeYear' => true,
 							'yearRange' => '+0:+10',
-							'dateFormat'=>'dd-mm-yy',
+							'dateFormat'=>'d-m-yy',
 							
 						),
 					),
@@ -60,6 +61,12 @@ class DatasetFormStep1 extends CFormModel {
 							'dateFormat'=>'dd-mm-yy',
 						),
 					),
+					//adding age field Ernest
+					'PtAge'=>array(
+						'label' => 'Patient Age',
+						'type' => 'text',
+						),
+					
 					'pt_sex'=>array(
 						'label' => 'Gender',
 						'type' => 'dropdownlist',
