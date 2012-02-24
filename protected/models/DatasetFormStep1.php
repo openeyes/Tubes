@@ -15,90 +15,87 @@ class DatasetFormStep1 extends CFormModel {
 	public $ethnicity;
 	public $pt_part_of_study;
 	public $study_name;
-	private $_scenario='wizard';
-	
+	private $_scenario = 'wizard';
+
 	/**
 	 * Validation rules must not conflict with model level rules
 	 */
 	public function rules() {
 		return Dataset::model()->rules_step1();
 	}
-	
+
 	public function getElements() {
 		return array(
-					'hospital_number'=>array(
-						'type' => 'text',
-					),
-					'pt_last_name'=>array(
-						'label' => 'Last Name',
-						'type' => 'text',
-						'size' => 50,
-					),
-					'pt_first_name'=>array(
-						'label' => 'First Name',
-						'type' => 'text',
-						'size' => 50,
-					),
-					'surg_op_date'=>array(
-						'label' => 'Surgery Date (DD-MM-YYYY)',
-						'value'=>'', //date('d-m-Y') need to add default current date here Ernest,
-						'type' => 'zii.widgets.jui.CJuiDatePicker',
-						'options' => array(
-							'changeMonth' => true,
-							'changeYear' => true,
-							'yearRange' => '+0:+10',
-							'dateFormat'=>'d-m-yy',
-							
-						),
-					),
-					'pt_dob'=>array(
-						'label' => 'Date of Birth (DD-MM-YYYY)',
-						'type' => 'zii.widgets.jui.CJuiDatePicker',
-						'options' => array(
-							'changeMonth' => true,
-							'changeYear' => true,
-							'yearRange' => '-100:+0',
-							'dateFormat'=>'dd-mm-yy',
-						),
-					),
-					//adding age field Ernest
-					'PtAge'=>array(
-						'label' => 'Patient Age',
-						'type' => 'text',
-						),
-					
-					'pt_sex'=>array(
-						'label' => 'Gender',
-						'type' => 'dropdownlist',
-    				'items' => ZHtml::enumItem(Dataset::model(),  'pt_sex'),
-    				'prompt' => 'Please select:',
-					),
-					'ethnicity'=>array(
-						'type' => 'dropdownlist',
-    				'items' => ZHtml::enumItem(Dataset::model(),  'ethnicity'),
-    				'prompt' => 'Please select:',
-					),
-					'pt_part_of_study'=>array(
-						'label' => 'Is this patient in a study ?',
-						'type' => 'checkbox',
-					),
-					'study_name'=>array(
-					'label'=>'If so, which study?',
-						'type' => 'text',
-					),
-				);
+			'hospital_number' => array(
+				'type' => 'text',
+			),
+			'pt_last_name' => array(
+				'label' => 'Last Name',
+				'type' => 'text',
+				'size' => 30,
+			),
+			'pt_first_name' => array(
+				'label' => 'First Name',
+				'type' => 'text',
+				'size' => 30,
+			),
+			'surg_op_date' => array(
+				'label' => 'Surgery Date (DD-MM-YYYY)',
+				'value' => '', //date('d-m-Y') need to add default current date here Ernest,
+				'type' => 'zii.widgets.jui.CJuiDatePicker',
+				'options' => array(
+					'changeMonth' => true,
+					'changeYear' => true,
+					'yearRange' => '+0:+10',
+					'dateFormat' => 'd-m-yy',
+				),
+			),
+			'pt_dob' => array(
+				'label' => 'Date of Birth (DD-MM-YYYY)',
+				'type' => 'zii.widgets.jui.CJuiDatePicker',
+				'options' => array(
+					'changeMonth' => true,
+					'changeYear' => true,
+					'yearRange' => '-100:+0',
+					'dateFormat' => 'dd-mm-yy',
+				),
+			),
+			'PtAge' => array(
+				'label' => 'Patient Age',
+				'type' => 'text',
+			),
+			'pt_sex' => array(
+				'label' => 'Gender',
+				'type' => 'dropdownlist',
+ 				'items' => ZHtml::enumItem(Dataset::model(), 'pt_sex'),
+ 				'prompt' => 'Please select:',
+			),
+			'ethnicity' => array(
+				'type' => 'dropdownlist',
+ 				'items' => ZHtml::enumItem(Dataset::model(), 'ethnicity'),
+ 				'prompt' => 'Please select:',
+			),
+			'pt_part_of_study' => array(
+				'label' => 'Is this patient in a study ?',
+				'type' => 'checkbox',
+			),
+			'study_name' => array(
+				'label' => 'Study name',
+				'type' => 'text',
+			),
+		);
 	}
-	
+
 	public function getForm() {
 		return new CForm(array(
-				'elements' => $this->getElements(),
-				'buttons' => array(
-					'submit'=>array(
-						'type'=>'submit',
-						'label'=>'Next'
-					),
+			'elements' => $this->getElements(),
+			'buttons' => array(
+				'submit' => array(
+					'type' => 'submit',
+					'label' => 'Next'
 				),
-			), $this);
+			),
+		), $this);
 	}
 
 }

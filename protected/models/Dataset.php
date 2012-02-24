@@ -70,22 +70,19 @@
  * @property integer $PtAge
  * @property float $AverageIOP
  */
-class Dataset extends CActiveRecord
-{
+class Dataset extends CActiveRecord {
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @return Dataset the static model class
 	 */
-	public static function model($className=__CLASS__)
-	{
+	public static function model($className=__CLASS__) {
 		return parent::model($className);
 	}
 
 	/**
 	 * @return string the associated database table name
 	 */
-	public function tableName()
-	{
+	public function tableName() {
 		return 'dataset';
 	}
 
@@ -112,7 +109,8 @@ class Dataset extends CActiveRecord
 				previous_surgery_comment, asmt_eye, anaesthetic_type, shunt_type, anti_metabolites, per_operative_drugs,
 				plate_position, tube_position, patch, plate_limbus_distance, supramid_in_eye, supramid_distance_from_limbus,
 				tube_occlusion, ligated, slit, viscoelastic, flow_tested, surgical_comments, surgeon_name', 'safe', 'on'=>'search'),
-		));
+			)
+		);
 		return $rules;
 	}
 	
@@ -183,8 +181,7 @@ class Dataset extends CActiveRecord
 	/**
 	 * @return array relational rules.
 	 */
-	public function relations()
-	{
+	public function relations() {
 		return array(
 			'user' => array(self::BELONGS_TO, 'User', 'userId'),//added on the 2nd October for user access
 		);
@@ -203,8 +200,7 @@ class Dataset extends CActiveRecord
 	/**
 	 * @return array customized attribute labels (name=>label)
 	 */
-	public function attributeLabels()
-	{
+	public function attributeLabels() {
 		return array(
 			'id' => 'ID',
 			'hospital_number' => 'Hospital Number',
@@ -219,7 +215,7 @@ class Dataset extends CActiveRecord
 			'study_name' => 'Study Name',
 			'ophth_diagnosis' => 'Ophthalmic Diagnosis',
 			'angle_diagnosis' => 'Angle Diagnosis',
-			'if_secondary_specify' => 'If Secondary Specify',
+			'if_secondary_specify' => 'Secondary Diagnosis',
 			'glaucmed_beta_blockers' => 'Beta Blockers',
 			'glaucmed_prostaglandins' => 'Prostaglandins',
 			'glaucmed_pilocarpine' => 'Pilocarpine',
@@ -239,7 +235,7 @@ class Dataset extends CActiveRecord
 			'asmt_cd_ratio' => 'Cd ratio',
 			'asmt_cornea' => 'Cornea',
 			'AverageIOP' => 'Average IOP',
-			'asmt_iop1' => 'Previous Last 3 IOPs',
+			'asmt_iop1' => 'Previous 3 IOPs',
 			'asmt_iop2' => '',
 			'asmt_iop3' => '',
 			'asmt_cct' => 'CCT',
@@ -307,8 +303,7 @@ class Dataset extends CActiveRecord
 	 * Retrieves a list of models based on the current search/filter conditions.
 	 * @return CActiveDataProvider the data provider that can return the models based on the search/filter conditions.
 	 */
-	public function search()
-	{
+	public function search() {
 		// Warning: Please modify the following code to remove attributes that
 		// should not be searched.
 
@@ -399,4 +394,5 @@ class Dataset extends CActiveRecord
         
         return parent::beforeValidate();
     }
+    
 }

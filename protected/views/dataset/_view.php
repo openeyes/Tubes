@@ -24,4 +24,8 @@
 	<?php echo CHtml::encode($data->pt_dob); ?>
 	<br />
 
+	<b><?php echo CHtml::encode($data->getAttributeLabel('PtAge')); ?>:</b>
+	<?php echo CHtml::encode($data->PtAge); ?>
+	<br />
+
 </div>
