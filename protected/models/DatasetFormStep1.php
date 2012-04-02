@@ -50,7 +50,7 @@ class DatasetFormStep1 extends CFormModel {
 							'changeYear' => true,
 							'yearRange' => '+0:+10',
 							'dateFormat'=>'d-m-yy',
-							'defaultDate'=>'+0',//option doesn't seem to work-Er
+							'defaultDate'=>'+0',//default date set @Ernest
 							
 							
 						),
